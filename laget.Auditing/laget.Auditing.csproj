@@ -2,8 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.1;netstandard2.0</TargetFrameworks>
-    <AssemblyName>laget.Auditing.Auditor</AssemblyName>
-    <RootNamespace>laget.Auditing.Auditor</RootNamespace>
+    <NuspecProperties>version=$(Version)</NuspecProperties>
   </PropertyGroup>
 
   <ItemGroup>
