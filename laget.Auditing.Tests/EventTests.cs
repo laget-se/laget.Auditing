@@ -20,8 +20,8 @@ namespace laget.Auditing.Tests
 
             // Assert
             Assert.NotEmpty(message.Id);
-            Assert.Equal("Account", message.Type);
-            Assert.Equal("Created", message.Action);
+            Assert.Equal("Added", message.Action);
+            Assert.Equal("Account", message.Category);
             Assert.Equal(account, message.For);
             Assert.Equal(by, message.By);
             Assert.Equal(site, message.To);
@@ -38,8 +38,8 @@ namespace laget.Auditing.Tests
             
             // Assert
             Assert.NotEmpty(message.Id);
-            Assert.Equal("Account", message.Type);
             Assert.Equal("Created", message.Action);
+            Assert.Equal("Account", message.Category);
             Assert.Equal(account, message.For);
             Assert.Equal(by, message.By);
         }
@@ -57,8 +57,8 @@ namespace laget.Auditing.Tests
 
             // Assert
             Assert.NotEmpty(message.Id);
-            Assert.Equal("Account", message.Type);
             Assert.Equal("Deleted", message.Action);
+            Assert.Equal("Account", message.Category);
             Assert.Equal(account, message.For);
             Assert.Equal(by, message.By);
             Assert.Equal(site, message.From);
@@ -75,8 +75,8 @@ namespace laget.Auditing.Tests
 
             // Assert
             Assert.NotEmpty(message.Id);
-            Assert.Equal("Account", message.Type);
             Assert.Equal("Information", message.Action);
+            Assert.Equal("Account", message.Category);
             Assert.Equal(account, message.For);
             Assert.Equal(by, message.By);
         }
@@ -94,8 +94,8 @@ namespace laget.Auditing.Tests
 
             // Assert
             Assert.NotEmpty(message.Id);
-            Assert.Equal("Account", message.Type);
             Assert.Equal("Removed", message.Action);
+            Assert.Equal("Account", message.Category);
             Assert.Equal(account, message.For);
             Assert.Equal(by, message.By);
             Assert.Equal(site, message.From);
@@ -114,8 +114,8 @@ namespace laget.Auditing.Tests
 
             // Assert
             Assert.NotEmpty(message.Id);
-            Assert.Equal("Account", message.Type);
             Assert.Equal("Updated", message.Action);
+            Assert.Equal("Account", message.Category);
             Assert.Equal(account, message.For);
             Assert.Equal(by, message.By);
             Assert.Equal(site, message.From);
