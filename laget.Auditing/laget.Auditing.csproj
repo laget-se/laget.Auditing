@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1;netstandard2.0</TargetFrameworks>
+    <AssemblyName>laget.Auditing.Auditor</AssemblyName>
+    <RootNamespace>laget.Auditing.Auditor</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="laget.Azure.ServiceBus" Version="1.1.3" />
+    <PackageReference Include="MongoDB.Driver" Version="2.12.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\laget.Auditing.Models\laget.Auditing.Models.csproj" />
+  </ItemGroup>
+
+</Project>
