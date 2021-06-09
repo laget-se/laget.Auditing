@@ -1,4 +1,4 @@
-﻿using laget.Auditing.Auditor.Events;
+﻿using laget.Auditing.Events;
 using laget.Auditing.Models;
 using laget.Auditing.Tests.Models;
 using Xunit;

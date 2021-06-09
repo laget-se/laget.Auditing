@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace laget.Auditing.Auditor.Attributes
+namespace laget.Auditing.Attributes
 {
     [AttributeUsage(AttributeTargets.Property)]
 

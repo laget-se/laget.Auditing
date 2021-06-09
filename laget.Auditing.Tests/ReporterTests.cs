@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using laget.Auditing.Auditor;
 using laget.Auditing.Tests.Models;
 using MongoDB.Driver;
 using Xunit;

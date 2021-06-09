@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using laget.Auditing.Models;
 using MongoDB.Driver;
 
-namespace laget.Auditing.Auditor
+namespace laget.Auditing
 {
     public interface IReporter<TEntity>
     {

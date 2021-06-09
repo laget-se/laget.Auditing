@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
-using laget.Auditing.Auditor;
-using laget.Auditing.Auditor.Events;
+using laget.Auditing.Events;
 using laget.Auditing.Models;
 using laget.Auditing.Tests.Models;
 using laget.Azure.ServiceBus.Topic;
@@ -17,7 +16,7 @@ namespace laget.Auditing.Tests
         {
             var topicSender = new Mock<ITopicSender>();
 
-            _auditor = new Auditor.Auditor(topicSender.Object);
+            _auditor = new Auditor(topicSender.Object);
         }
 
         [Fact(Skip = "We need to mock the auditor")]

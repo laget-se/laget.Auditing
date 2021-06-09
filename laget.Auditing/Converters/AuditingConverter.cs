@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
-using laget.Auditing.Auditor.Attributes;
+using laget.Auditing.Attributes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 
-namespace laget.Auditing.Auditor.Converters
+namespace laget.Auditing.Converters
 {
     public class AuditingConverter : JsonConverter
     {

@@ -1,7 +1,7 @@
 ﻿using laget.Auditing.Models;
 using Newtonsoft.Json;
 
-namespace laget.Auditing.Auditor.Events
+namespace laget.Auditing.Events
 {
     public class Information : Message
     {
