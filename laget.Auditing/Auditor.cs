@@ -5,14 +5,13 @@ using laget.Azure.ServiceBus.Topic;
 using Microsoft.Azure.ServiceBus;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using Message = laget.Auditing.Models.Message;
 
 namespace laget.Auditing
 {
     public interface IAuditor
     {
-        void Send(Message msg);
-        Task SendAsync(Message msg);
+        void Send(Models.Message msg);
+        Task SendAsync(Models.Message msg);
     }
 
     public class Auditor : IAuditor
@@ -44,12 +43,12 @@ namespace laget.Auditing
             _topicSender = topicSender;
         }
 
-        public void Send(Message message)
+        public void Send(Models.Message message)
         {
             Task.Run(() => SendAsync(message)).Wait();
         }
 
-        public async Task SendAsync(Message message)
+        public async Task SendAsync(Models.Message message)
         {
             var json = JsonConvert.SerializeObject(message, new JsonSerializerSettings
             {

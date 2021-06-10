@@ -38,7 +38,7 @@ namespace laget.Auditing.Converters
 
             token = (JObject)token;
             var convertible = value.GetType().GetProperties().Where(prop => prop.CustomAttributes.Any(attr => attr.AttributeType == typeof(AuditingAttribute)));
-            var nonconvertible = value.GetType().GetProperties().Where(prop => !prop.CustomAttributes.Any());
+            //var nonconvertible = value.GetType().GetProperties().Where(prop => !prop.CustomAttributes.Any());
 
             foreach (var property in convertible)
             {
@@ -54,16 +54,16 @@ namespace laget.Auditing.Converters
                 currentJsonPropertyValue.Parent.Replace(newJsonProperty);
             }
 
-            foreach (var property in nonconvertible)
-            {
-                var currentName = property.Name;
-                var newName = resolver?.GetResolvedPropertyName(currentName) ?? currentName;
+            //foreach (var property in nonconvertible)
+            //{
+            //    var currentName = property.Name;
+            //    var newName = resolver?.GetResolvedPropertyName(currentName) ?? currentName;
 
-                // Perform the renaming in the JSON object.
-                var currentJsonPropertyValue = token[currentName];
-                var newJsonProperty = new JProperty(newName, currentJsonPropertyValue);
-                currentJsonPropertyValue.Parent.Replace(newJsonProperty);
-            }
+            //    // Perform the renaming in the JSON object.
+            //    var currentJsonPropertyValue = token[currentName];
+            //    var newJsonProperty = new JProperty(newName, currentJsonPropertyValue);
+            //    currentJsonPropertyValue.Parent.Replace(newJsonProperty);
+            //}
 
             token.WriteTo(writer);
         }
