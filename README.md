@@ -1,5 +1,5 @@
 ﻿# laget.Auditing
-_TODO_
+A simple framework to audit entities in .NET and .NET Core...
 
 ![Nuget](https://img.shields.io/nuget/v/laget.Auditing)
 ![Nuget](https://img.shields.io/nuget/dt/laget.Auditing)
