@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using laget.Auditing.Converters;
+using laget.Auditing.Models.Converters;
 using laget.Azure.ServiceBus.Topic;
 using Microsoft.Azure.ServiceBus;
 using Newtonsoft.Json;
@@ -29,7 +29,7 @@ namespace laget.Auditing
                 new TopicOptions
                 {
                     TopicName = topicName,
-                    RetryPolicy = new RetryExponential(minimumBackoff: TimeSpan.Zero, maximumBackoff: TimeSpan.FromMinutes(5), maximumRetryCount: 100)
+                    RetryPolicy = new RetryExponential(minimumBackoff: TimeSpan.FromSeconds(5), maximumBackoff: TimeSpan.FromMinutes(5), maximumRetryCount: 100)
                 });
         }
 

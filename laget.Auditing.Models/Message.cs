@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using System.Reflection;
+using laget.Auditing.Models.Converters;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
@@ -20,8 +21,7 @@ namespace laget.Auditing.Models
         object In { get; set; }
         object To { get; set; }
     }
-
-    [JsonObject(NamingStrategyType = typeof(CamelCaseNamingStrategy))]
+    
     public class Message : Azure.ServiceBus.Message, IMessage
     {
         [JsonProperty("id"), JsonIgnore, BsonIgnore]
@@ -75,12 +75,32 @@ namespace laget.Auditing.Models
         {
             By = BsonSerializer.Deserialize<object>(JsonConvert.SerializeObject(By)),
             CreatedAt = CreatedAt,
-            For = BsonSerializer.Deserialize<object>(JsonConvert.SerializeObject(For)),
             Description = Description,
-            From = BsonSerializer.Deserialize<object>(JsonConvert.SerializeObject(From)),
-            In = BsonSerializer.Deserialize<object>(JsonConvert.SerializeObject(In)),
-            To = BsonSerializer.Deserialize<object>(JsonConvert.SerializeObject(To)),
+            For = BsonSerializer.Deserialize<object>(Serialize(For)),
+            From = BsonSerializer.Deserialize<object>(Serialize(From)),
+            In = BsonSerializer.Deserialize<object>(Serialize(In)),
+            To = BsonSerializer.Deserialize<object>(Serialize(To)),
             Type = Type
         };
+        
+        private string Serialize(object obj)
+        {
+            var json = JsonConvert.SerializeObject(obj, new JsonSerializerSettings
+            {
+                Converters = new JsonConverter[] { new AuditingConverter() },
+                ContractResolver = new DefaultContractResolver
+                {
+                    NamingStrategy = new CamelCaseNamingStrategy
+                    {
+                        ProcessDictionaryKeys = true,
+                        ProcessExtensionDataNames = true,
+                        OverrideSpecifiedNames = true
+                    }
+                },
+                Formatting = Formatting.Indented
+            });
+
+            return JsonConvert.SerializeObject(json);
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace laget.Auditing.Models
         public int Id { get; set; }
         [BsonElement("name"), JsonProperty("name")]
         public string Name { get; set; }
-        [BsonElement("superuser"), JsonProperty("superuser")]
-        public bool Superuser { get; set; } = false;
+        [BsonElement("superadmin"), JsonProperty("superadmin")]
+        public bool Superadmin { get; set; } = false;
     }
 }
