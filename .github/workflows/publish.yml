@@ -42,4 +42,4 @@ jobs:
         PROJECT_FILE_PATH: laget.Auditing/laget.Auditing.csproj
         NUGET_KEY: ${{secrets.NUGET_API_KEY}}
         NUSPEC_FILE: laget.Auditing.nuspec
-        VERSION_STATIC: "1.0.${{github.run_number}}"
+        VERSION_STATIC: "1.0.${{github.run_number}}-alpha"
