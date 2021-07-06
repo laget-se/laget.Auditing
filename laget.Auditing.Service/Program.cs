@@ -27,10 +27,10 @@ namespace laget.Auditing.Service
                     services.AddHostedService<RecordService>();
                 })
                 .UseConsoleLifetime()
-                .UseDogStatsd(new StatsdConfig
+                .UseDogStatsd((context) => new StatsdConfig
                 {
-                    StatsdServerName = "stats.laget.se",
                     Prefix = "auditing"
+                    StatsdServerName = context.HostingEnvironment.IsProduction() ? "stats.laget.se" : "stats.laget.dev"
                 })
                 .UseEnvironment(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development")
                 .UseSerilog((context, services, configuration) => configuration.ReadFrom.Configuration(context.Configuration))
