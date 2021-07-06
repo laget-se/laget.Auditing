@@ -29,7 +29,7 @@ namespace laget.Auditing.Service
                 .UseConsoleLifetime()
                 .UseDogStatsd((context) => new StatsdConfig
                 {
-                    Prefix = "auditing"
+                    Prefix = "auditing",
                     StatsdServerName = context.HostingEnvironment.IsProduction() ? "stats.laget.se" : "stats.laget.dev"
                 })
                 .UseEnvironment(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development")
