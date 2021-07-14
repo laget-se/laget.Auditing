@@ -17,7 +17,7 @@ namespace laget.Auditing.Tests
         [Fact(Skip = "We need to mock the auditor")]
         public void ShouldFindEvents()
         {
-            var filter = Builders<Auditing.Models.Record>.Filter.Empty;
+            var filter = Builders<Core.Models.Record>.Filter.Empty;
             var records = _reporter.Find(filter);
 
             // Assert
@@ -27,7 +27,7 @@ namespace laget.Auditing.Tests
         [Fact(Skip = "We need to mock the auditor")]
         public async Task ShouldFindEventsAsync()
         {
-            var filter = Builders<Auditing.Models.Record>.Filter.Empty;
+            var filter = Builders<Core.Models.Record>.Filter.Empty;
 
             var records = await _reporter.FindAsync(filter);
 

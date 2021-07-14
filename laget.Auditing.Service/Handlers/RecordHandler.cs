@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using laget.Auditing.Models;
+using laget.Auditing.Core.Models;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 using Serilog;

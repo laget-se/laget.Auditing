@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "laget.Auditing.Tests", "lag
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{107CAD3E-6CED-402E-8306-92C914E41FBD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "laget.Auditing.Models", "laget.Auditing.Models\laget.Auditing.Models.csproj", "{84724973-0118-4125-81A8-DD2D6A212379}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "laget.Auditing.Core", "laget.Auditing.Core\laget.Auditing.Core.csproj", "{375A4A9D-E7C9-487A-AF4C-9DF5A1D98E1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +39,10 @@ Global
 		{AC3CD208-CDB2-4FC5-BB7B-7E8C057003D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC3CD208-CDB2-4FC5-BB7B-7E8C057003D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC3CD208-CDB2-4FC5-BB7B-7E8C057003D7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{84724973-0118-4125-81A8-DD2D6A212379}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84724973-0118-4125-81A8-DD2D6A212379}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84724973-0118-4125-81A8-DD2D6A212379}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84724973-0118-4125-81A8-DD2D6A212379}.Release|Any CPU.Build.0 = Release|Any CPU
+		{375A4A9D-E7C9-487A-AF4C-9DF5A1D98E1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{375A4A9D-E7C9-487A-AF4C-9DF5A1D98E1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{375A4A9D-E7C9-487A-AF4C-9DF5A1D98E1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{375A4A9D-E7C9-487A-AF4C-9DF5A1D98E1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

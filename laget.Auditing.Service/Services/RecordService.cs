@@ -8,6 +8,7 @@ using Microsoft.Azure.ServiceBus;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
+using Message = laget.Auditing.Core.Models.Message;
 
 namespace laget.Auditing.Service.Services
 {
@@ -40,7 +41,7 @@ namespace laget.Auditing.Service.Services
                 {
                     Log.Information($"Executing '{nameof(RecordService)}' (Reason='Trigger fired at {DateTime.Now}', Id='{message.MessageId}')");
 
-                    var model = message.Deserialize<Models.Message>();
+                    var model = message.Deserialize<Message>();
 
                     await _handler.Handle(model.Category.ToLower(), model.ToRecord);
                 }, ExceptionHandler);

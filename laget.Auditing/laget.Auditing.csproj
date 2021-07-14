@@ -7,11 +7,11 @@
 
   <ItemGroup>
     <PackageReference Include="laget.Azure.ServiceBus" Version="1.1.5" />
-    <PackageReference Include="MongoDB.Driver" Version="2.12.4" />
+    <PackageReference Include="MongoDB.Driver" Version="2.13.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\laget.Auditing.Models\laget.Auditing.Models.csproj" />
+    <ProjectReference Include="..\laget.Auditing.Core\laget.Auditing.Core.csproj" />
   </ItemGroup>
 
 </Project>

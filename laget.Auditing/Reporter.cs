@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using laget.Auditing.Models;
+using laget.Auditing.Core.Models;
 using MongoDB.Driver;
 
 namespace laget.Auditing

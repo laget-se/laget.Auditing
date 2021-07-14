@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
+using laget.Auditing.Core.Models;
 using laget.Auditing.Events;
-using laget.Auditing.Models;
 using laget.Auditing.Tests.Models;
 using laget.Azure.ServiceBus.Topic;
 using Moq;

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using laget.Auditing.Models.Converters;
 using laget.Azure.ServiceBus.Topic;
 using Microsoft.Azure.ServiceBus;
 using Newtonsoft.Json;
@@ -10,8 +9,8 @@ namespace laget.Auditing
 {
     public interface IAuditor
     {
-        void Send(Models.Message msg);
-        Task SendAsync(Models.Message msg);
+        void Send(Core.Models.Message msg);
+        Task SendAsync(Core.Models.Message msg);
     }
 
     public class Auditor : IAuditor
@@ -43,16 +42,15 @@ namespace laget.Auditing
             _topicSender = topicSender;
         }
 
-        public void Send(Models.Message message)
+        public void Send(Core.Models.Message message)
         {
             Task.Run(() => SendAsync(message)).Wait();
         }
 
-        public async Task SendAsync(Models.Message message)
+        public async Task SendAsync(Core.Models.Message message)
         {
             var json = JsonConvert.SerializeObject(message, new JsonSerializerSettings
             {
-                Converters = new JsonConverter[] { new AuditingConverter() },
                 ContractResolver = new DefaultContractResolver
                 {
                     NamingStrategy = new CamelCaseNamingStrategy

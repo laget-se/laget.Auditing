@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Linq.Expressions;
 using System.Reflection;
-using laget.Auditing.Models.Converters;
+using laget.Auditing.Core.Converters;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
-namespace laget.Auditing.Models
+namespace laget.Auditing.Core.Models
 {
     /// <summary>
     /// We need to implement this interface to be able to select which properties that
@@ -77,9 +76,9 @@ namespace laget.Auditing.Models
             CreatedAt = CreatedAt,
             Description = Description,
             For = BsonSerializer.Deserialize<object>(Serializer.Serialize(For)),
-            From = BsonSerializer.Deserialize<object>(Serialize(From)),
-            In = BsonSerializer.Deserialize<object>(Serialize(In)),
-            To = BsonSerializer.Deserialize<object>(Serialize(To)),
+            From = BsonSerializer.Deserialize<object>(Serializer.Serialize(From)),
+            In = BsonSerializer.Deserialize<object>(Serializer.Serialize(In)),
+            To = BsonSerializer.Deserialize<object>(Serializer.Serialize(To)),
             Type = Type
         };
     }
