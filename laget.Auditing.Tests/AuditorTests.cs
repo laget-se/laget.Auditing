@@ -336,7 +336,7 @@ namespace laget.Auditing.Tests
             Assert.Equal(nameof(Created), message.Action);
             Assert.Equal("account",message.Category);
             Assert.Equal(by, message.By);
-            Assert.Equal(site, message.In);
+            Assert.Equal(site, message.On);
 
             // Verify
             _topicSender.Verify(x => x.SendAsync(json), Times.Once);
