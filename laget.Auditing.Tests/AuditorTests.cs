@@ -318,12 +318,16 @@ namespace laget.Auditing.Tests
                 name = "Jane Doe"
             };
             var by = new By { Id = 2, Name = "John Doe" };
-            var site = new Site();
+            var site = new
+            {
+                id = 123,
+                name = "FC GonAce"
+            };
 
             var message = new Created(account)
                 .With(x => x.Category, "account")
                 .With(x => x.By, by)
-                .With(x => x.In, site);
+                .With(x => x.On, site);
             var json = message.Serialize();
 
             await _auditor.SendAsync(message);

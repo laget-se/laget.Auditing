@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq.Expressions;
 using System.Reflection;
-using laget.Auditing.Converters;
 using Newtonsoft.Json;
 
 namespace laget.Auditing.Models
@@ -18,6 +17,7 @@ namespace laget.Auditing.Models
         By By { get; set; }
         object From { get; set; }
         object In { get; set; }
+        object On { get; set; }
         object To { get; set; }
     }
     
@@ -25,26 +25,24 @@ namespace laget.Auditing.Models
     {
         [JsonProperty("id")]
         public override string Id { get; set; } = Guid.NewGuid().ToString();
-        [JsonProperty("source")]
+        [JsonProperty("source"), JsonIgnore]
         public override Microsoft.Azure.ServiceBus.Message Source { get; set; }
         [JsonProperty("action"), JsonIgnore]
         public abstract string Action { get; set; }
 
         [JsonProperty("by")]
         public virtual By By { get; set; }
-        [JsonConverter(typeof(AuditingConverter))]
         [JsonProperty("for")]
         public virtual object For { get; set;  }
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
         public virtual string Description { get; set; }
-
-        [JsonConverter(typeof(AuditingConverter))]
+        
         [JsonProperty("from", NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
         public virtual object From { get; set; }
-        [JsonConverter(typeof(AuditingConverter))]
         [JsonProperty("in", NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
         public virtual object In { get; set; }
-        [JsonConverter(typeof(AuditingConverter))]
+        [JsonProperty("on", NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public virtual object On { get; set; }
         [JsonProperty("to", NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
         public virtual object To { get; set; }
 

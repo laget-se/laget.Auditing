@@ -21,6 +21,8 @@ namespace laget.Auditing.Core.Models
         public virtual object From { get; set; }
         [JsonProperty("in", NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
         public virtual object In { get; set; }
+        [JsonProperty("in", NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public virtual object On { get; set; }
         [JsonProperty("to", NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
         public virtual object To { get; set; }
         
@@ -33,6 +35,7 @@ namespace laget.Auditing.Core.Models
             For = BsonSerializer.Deserialize<object>(Serializer.Serialize(For)),
             From = BsonSerializer.Deserialize<object>(Serializer.Serialize(From)),
             In = BsonSerializer.Deserialize<object>(Serializer.Serialize(In)),
+            On = BsonSerializer.Deserialize<object>(Serializer.Serialize(On)),
             To = BsonSerializer.Deserialize<object>(Serializer.Serialize(To)),
             Type = Type
         };

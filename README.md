@@ -64,20 +64,6 @@ public class AccountService
 }
 ```
 
-### Reporter
-```c#
-public class AccountReporter
-{
-    private readonly IReporter _reporter;
-
-    public AccountReporter(IAccountRepository repository)
-    {
-        _reporter = new Reporter("MongoDbConnectionString");
-    }
-}
-
-```
-
 ### Methods
 ```c#
 ```

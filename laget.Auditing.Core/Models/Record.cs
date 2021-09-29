@@ -20,10 +20,12 @@ namespace laget.Auditing.Core.Models
 
         [BsonElement("from"), BsonIgnoreIfDefault, BsonIgnoreIfNull]
         public object From { get; set; }
-        [BsonElement("to"), BsonIgnoreIfDefault, BsonIgnoreIfNull]
-        public object To { get; set; }
         [BsonElement("in"), BsonIgnoreIfDefault, BsonIgnoreIfNull]
         public object In { get; set; }
+        [BsonElement("on"), BsonIgnoreIfDefault, BsonIgnoreIfNull]
+        public object On { get; set; }
+        [BsonElement("to"), BsonIgnoreIfDefault, BsonIgnoreIfNull]
+        public object To { get; set; }
 
         [BsonElement("createdAt"), BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
         public DateTime CreatedAt { get; set; }
