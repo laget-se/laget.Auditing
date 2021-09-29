@@ -15,6 +15,8 @@ namespace laget.Auditing.Core.Models
     /// </summary>
     public interface IMessage
     {
+        string Category { get; set; }
+
         By By { get; set; }
         object From { get; set; }
         object In { get; set; }

@@ -1,4 +1,7 @@
-﻿using laget.Auditing.Core;
+﻿using System;
+using System.Globalization;
+using System.Threading;
+using laget.Auditing.Core;
 using laget.Auditing.Core.Models;
 using laget.Auditing.Events;
 using laget.Auditing.Tests.Models;
@@ -8,6 +11,13 @@ namespace laget.Auditing.Tests
 {
     public class SerializerTests
     {
+        public SerializerTests()
+        {
+            Thread.CurrentThread.CurrentCulture.DateTimeFormat = new DateTimeFormatInfo
+            {
+            };
+        }
+
         [Fact(Skip = "We need to provide a way to test the serializer with datetime (createdAt)!")]
         public void ShouldSerialize()
         {
@@ -39,8 +49,9 @@ namespace laget.Auditing.Tests
   },
   ""type"": ""Added"",
   ""category"": ""Account"",
-  ""createdAt"": ""2021-07-14T10:19:42.1154758+02:00""
+  ""createdAt"": ""2021-09-29T09:44:45.9268786+02:00""
 }";
+
             var actual = Serializer.Serialize(message);
 
             Assert.Equal(expected, actual);
