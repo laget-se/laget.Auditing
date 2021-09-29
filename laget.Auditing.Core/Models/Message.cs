@@ -10,10 +10,10 @@ namespace laget.Auditing.Core.Models
 {
     /// <summary>
     /// We need to implement this interface to be able to select which properties that
-    /// should be exposed when using the With(Expression<Func<IRecord, object>> expression, object value)
+    /// should be exposed when using the With(Expression<Func<IEvent, object>> expression, object value)
     /// method.
     /// </summary>
-    public interface IMessage
+    public interface IEvent
     {
         string Category { get; set; }
 
@@ -23,14 +23,14 @@ namespace laget.Auditing.Core.Models
         object To { get; set; }
     }
     
-    public class Message : Azure.ServiceBus.Message, IMessage
+    public abstract class Event : Azure.ServiceBus.Message, IEvent
     {
         [JsonProperty("id"), JsonIgnore, BsonIgnore]
         public override string Id => Guid.NewGuid().ToString();
         [JsonProperty("source"), JsonIgnore, BsonIgnore]
         public override Microsoft.Azure.ServiceBus.Message Source { get; set; }
         [JsonProperty("action"), JsonIgnore, BsonIgnore]
-        public virtual string Action => Constants.Action.Information.ToString();
+        public abstract string Action { get; set; }
 
         [JsonProperty("by")]
         public virtual By By { get; set; }
@@ -46,18 +46,18 @@ namespace laget.Auditing.Core.Models
         [JsonProperty("to", NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
         public virtual object To { get; set; }
 
-        public Message()
+        protected Event()
         {
         }
 
-        public Message(object entity)
+        protected Event(object entity)
         {
             Category = entity.GetType().Name;
             For = entity;
             Type = Action;
         }
 
-        public Message With(Expression<Func<IMessage, object>> expression, object value)
+        public Event With(Expression<Func<IEvent, object>> expression, object value)
         {
             if (expression.Body is MemberExpression memberSelectorExpression)
             {

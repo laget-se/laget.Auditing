@@ -70,7 +70,8 @@ namespace laget.Auditing.Tests
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
 
-            var message = new Information(account, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vulputate rhoncus mattis. Cras malesuada consectetur mi, quis feugiat lorem pellentesque a.")
+            var description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vulputate rhoncus mattis. Cras malesuada consectetur mi, quis feugiat lorem pellentesque a.";
+            var message = new Information(account, description)
                 .With(x => x.By, by);
 
             // Assert
@@ -79,6 +80,7 @@ namespace laget.Auditing.Tests
             Assert.Equal("Account", message.Category);
             Assert.Equal(account, message.For);
             Assert.Equal(by, message.By);
+            Assert.Equal(description, message.Description);
         }
 
         [Fact]

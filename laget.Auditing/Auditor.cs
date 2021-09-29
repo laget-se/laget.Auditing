@@ -9,8 +9,8 @@ namespace laget.Auditing
 {
     public interface IAuditor
     {
-        void Send(Core.Models.Message msg);
-        Task SendAsync(Core.Models.Message msg);
+        void Send(Core.Models.Event msg);
+        Task SendAsync(Core.Models.Event msg);
     }
 
     public class Auditor : IAuditor
@@ -42,14 +42,14 @@ namespace laget.Auditing
             _topicSender = topicSender;
         }
 
-        public void Send(Core.Models.Message message)
+        public void Send(Core.Models.Event @event)
         {
-            Task.Run(() => SendAsync(message)).Wait();
+            Task.Run(() => SendAsync(@event)).Wait();
         }
 
-        public async Task SendAsync(Core.Models.Message message)
+        public async Task SendAsync(Core.Models.Event @event)
         {
-            var json = JsonConvert.SerializeObject(message, new JsonSerializerSettings
+            var json = JsonConvert.SerializeObject(@event, new JsonSerializerSettings
             {
                 ContractResolver = new DefaultContractResolver
                 {

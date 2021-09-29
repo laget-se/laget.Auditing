@@ -3,10 +3,10 @@ using Newtonsoft.Json;
 
 namespace laget.Auditing.Events
 {
-    public class Updated : Message
+    public class Updated : Event
     {
         [JsonProperty("action")]
-        public override string Action => Core.Constants.Action.Update.ToString();
+        public override string Action { get; set; } = nameof(Updated);
 
         public Updated(object entity)
             : base(entity)
