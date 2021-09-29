@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\laget.Auditing\laget.Auditing.csproj" />
+    <ProjectReference Include="..\laget.Auditing.Core\laget.Auditing.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Linq.Expressions;
 using System.Reflection;
-using laget.Auditing.Core.Converters;
-using MongoDB.Bson.Serialization;
-using MongoDB.Bson.Serialization.Attributes;
+using laget.Auditing.Converters;
 using Newtonsoft.Json;
 
-namespace laget.Auditing.Core.Models
+namespace laget.Auditing.Models
 {
     /// <summary>
     /// We need to implement this interface to be able to select which properties that
@@ -25,24 +23,28 @@ namespace laget.Auditing.Core.Models
     
     public abstract class Event : Azure.ServiceBus.Message, IEvent
     {
-        [JsonProperty("id"), JsonIgnore, BsonIgnore]
-        public override string Id => Guid.NewGuid().ToString();
-        [JsonProperty("source"), JsonIgnore, BsonIgnore]
+        [JsonProperty("id")]
+        public override string Id { get; set; } = Guid.NewGuid().ToString();
+        [JsonProperty("source")]
         public override Microsoft.Azure.ServiceBus.Message Source { get; set; }
-        [JsonProperty("action"), JsonIgnore, BsonIgnore]
+        [JsonProperty("action"), JsonIgnore]
         public abstract string Action { get; set; }
 
         [JsonProperty("by")]
         public virtual By By { get; set; }
-        [JsonProperty("for"), JsonConverter(typeof(AuditingConverter))]
+        [JsonConverter(typeof(AuditingConverter))]
+        [JsonProperty("for")]
         public virtual object For { get; set;  }
         [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
         public virtual string Description { get; set; }
-        
+
+        [JsonConverter(typeof(AuditingConverter))]
         [JsonProperty("from", NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
         public virtual object From { get; set; }
+        [JsonConverter(typeof(AuditingConverter))]
         [JsonProperty("in", NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
         public virtual object In { get; set; }
+        [JsonConverter(typeof(AuditingConverter))]
         [JsonProperty("to", NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
         public virtual object To { get; set; }
 
@@ -70,18 +72,5 @@ namespace laget.Auditing.Core.Models
 
             return this;
         }
-
-        [JsonIgnore]
-        public Record ToRecord => new Record
-        {
-            By = BsonSerializer.Deserialize<object>(JsonConvert.SerializeObject(By)),
-            CreatedAt = CreatedAt,
-            Description = Description,
-            For = BsonSerializer.Deserialize<object>(Serializer.Serialize(For)),
-            From = BsonSerializer.Deserialize<object>(Serializer.Serialize(From)),
-            In = BsonSerializer.Deserialize<object>(Serializer.Serialize(In)),
-            To = BsonSerializer.Deserialize<object>(Serializer.Serialize(To)),
-            Type = Type
-        };
     }
 }

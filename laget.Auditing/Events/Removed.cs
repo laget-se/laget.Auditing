@@ -1,4 +1,4 @@
-﻿using laget.Auditing.Core.Models;
+﻿using laget.Auditing.Models;
 using Newtonsoft.Json;
 
 namespace laget.Auditing.Events

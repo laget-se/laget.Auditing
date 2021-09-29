@@ -9,8 +9,4 @@
     <PackageReference Include="laget.Azure.ServiceBus" Version="1.1.6" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\laget.Auditing.Core\laget.Auditing.Core.csproj" />
-  </ItemGroup>
-
 </Project>

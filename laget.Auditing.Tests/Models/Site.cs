@@ -1,4 +1,4 @@
-﻿using laget.Auditing.Core.Attributes;
+﻿using laget.Auditing.Attributes;
 
 namespace laget.Auditing.Tests.Models
 {
