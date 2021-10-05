@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "laget.Auditing.Sinks.MongoD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "laget.Auditing.Persistor", "laget.Auditing.Persistor\laget.Auditing.Persistor.csproj", "{343F392D-AE1E-4AB9-A5D3-101A586037F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "laget.Auditing.Sinks", "laget.Auditing.Sinks\laget.Auditing.Sinks.csproj", "{5E1B2AA6-B534-4F5A-9E85-D3B6051DB846}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{343F392D-AE1E-4AB9-A5D3-101A586037F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{343F392D-AE1E-4AB9-A5D3-101A586037F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{343F392D-AE1E-4AB9-A5D3-101A586037F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E1B2AA6-B534-4F5A-9E85-D3B6051DB846}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E1B2AA6-B534-4F5A-9E85-D3B6051DB846}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E1B2AA6-B534-4F5A-9E85-D3B6051DB846}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E1B2AA6-B534-4F5A-9E85-D3B6051DB846}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +65,7 @@ Global
 		{AC3CD208-CDB2-4FC5-BB7B-7E8C057003D7} = {107CAD3E-6CED-402E-8306-92C914E41FBD}
 		{415C75CC-CC29-4CD8-8AB4-81E390DDFBCA} = {FC956D68-1273-4211-AA02-311CF5FD33F9}
 		{A2B60F88-6645-465A-9374-A5E93DFDFE6E} = {FC956D68-1273-4211-AA02-311CF5FD33F9}
+		{5E1B2AA6-B534-4F5A-9E85-D3B6051DB846} = {FC956D68-1273-4211-AA02-311CF5FD33F9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9E849F98-69AD-4552-B9E8-97C3128FC28A}

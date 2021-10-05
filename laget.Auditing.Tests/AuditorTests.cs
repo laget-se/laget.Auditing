@@ -22,12 +22,14 @@ namespace laget.Auditing.Tests
         [Fact]
         public void ShouldSendAddedEvent()
         {
-            var name = "ShouldSendAddedEvent";
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
             var site = new Site();
+            var name = nameof(Account);
 
             var message = new Added(name, account)
+                .With(x => x.ClubId, 67347)
+                .With(x => x.SiteId, 134049)
                 .With(x => x.By, by)
                 .With(x => x.Reference, site);
             var json = message.Serialize();
@@ -47,10 +49,10 @@ namespace laget.Auditing.Tests
         [Fact]
         public async Task ShouldSendAddedEventAsync()
         {
-            var name = "ShouldSendAddedEventAsync";
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
             var site = new Site();
+            var name = nameof(Account);
 
             var message = new Added(name, account)
                 .With(x => x.By, by)
@@ -72,9 +74,9 @@ namespace laget.Auditing.Tests
         [Fact]
         public void ShouldSendCreateEvent()
         {
-            var name = "ShouldSendCreateEvent";
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
+            var name = nameof(Account);
 
             var message = new Created(name, account)
                 .With(x => x.By, by);
@@ -95,9 +97,9 @@ namespace laget.Auditing.Tests
         [Fact]
         public async Task ShouldSendCreateEventAsync()
         {
-            var name = "ShouldSendCreateEventAsync";
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
+            var name = nameof(Account);
 
             var message = new Created(name, account)
                 .With(x => x.By, by);
@@ -118,10 +120,10 @@ namespace laget.Auditing.Tests
         [Fact]
         public void ShouldSendDeletedEvent()
         {
-            var name = "ShouldSendDeletedEvent";
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
             var site = new Site();
+            var name = nameof(Account);
 
             var message = new Deleted(name, account)
                 .With(x => x.By, by)
@@ -144,10 +146,10 @@ namespace laget.Auditing.Tests
         [Fact]
         public async Task ShouldSendDeletedEventAsync()
         {
-            var name = "ShouldSendDeletedEventAsync";
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
             var site = new Site();
+            var name = nameof(Account);
 
             var message = new Deleted(name, account)
                 .With(x => x.By, by)
@@ -170,9 +172,9 @@ namespace laget.Auditing.Tests
         [Fact]
         public void ShouldSendInformationEvent()
         {
-            var name = "ShouldSendInformationEvent";
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
+            var name = nameof(Account);
 
             var description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vulputate rhoncus mattis. Cras malesuada consectetur mi, quis feugiat lorem pellentesque a.";
             var message = new Information(name, account, description)
@@ -195,9 +197,9 @@ namespace laget.Auditing.Tests
         [Fact]
         public async Task ShouldSendInformationEventAsync()
         {
-            var name = "ShouldSendInformationEventAsync";
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
+            var name = nameof(Account);
 
             var description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vulputate rhoncus mattis. Cras malesuada consectetur mi, quis feugiat lorem pellentesque a.";
             var message = new Information(name, account, description)
@@ -220,10 +222,10 @@ namespace laget.Auditing.Tests
         [Fact]
         public void ShouldSendRemovedEvent()
         {
-            var name = "ShouldSendRemovedEvent";
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
             var site = new Site();
+            var name = nameof(Account);
 
             var message = new Removed(name, account)
                 .With(x => x.By, by)
@@ -246,10 +248,10 @@ namespace laget.Auditing.Tests
         [Fact]
         public async Task ShouldSendRemovedEventAsync()
         {
-            var name = "ShouldSendRemovedEventAsync";
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
             var site = new Site();
+            var name = nameof(Account);
 
             var message = new Removed(name, account)
                 .With(x => x.By, by)
@@ -272,10 +274,10 @@ namespace laget.Auditing.Tests
         [Fact]
         public void ShouldSendUpdatedEvent()
         {
-            var name = "ShouldSendUpdatedEvent";
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
             var site = new Site();
+            var name = nameof(Account);
 
             var message = new Updated(name, account)
                 .With(x => x.By, by)
@@ -298,10 +300,10 @@ namespace laget.Auditing.Tests
         [Fact]
         public async Task ShouldSendUpdatedEventAsync()
         {
-            var name = "ShouldSendUpdatedEventAsync";
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
             var site = new Site();
+            var name = nameof(Account);
 
             var message = new Updated(name, account)
                 .With(x => x.By, by)
@@ -324,8 +326,7 @@ namespace laget.Auditing.Tests
         [Fact]
         public async Task ShouldSendEventWithCustomObjectAsync()
         {
-            var name = "ShouldSendEventWithCustomObjectAsync";
-
+            var name = "Account";
             var account = new
             {
                 id = 123,

@@ -23,38 +23,32 @@ namespace laget.Auditing.Models
     {
         [JsonProperty("id")]
         public override string Id { get; set; } = Guid.NewGuid().ToString();
+        [JsonProperty("clubId", NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public int ClubId { get; set; }
+        [JsonProperty("siteId", NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public int SiteId { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        [JsonProperty("by")]
+        public By By { get; set; }
 
-        [JsonProperty("source"), JsonIgnore]
-        public override Microsoft.Azure.ServiceBus.Message Source { get; set; }
+        [JsonProperty("entity")]
+        public object Entity { get; set; }
+        [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public virtual string Description { get; set; }
+        [JsonProperty("reference", NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
+        public virtual object Reference { get; set; }
+
+        #region Ignored Properties
 
         [JsonProperty("action"), JsonIgnore]
         public abstract string Action { get; set; }
 
-        [JsonProperty("by")]
-        public virtual By By { get; set; }
-
-        [JsonProperty("for")]
-        public virtual object For { get; set; }
-
-        [JsonProperty("description", NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public virtual string Description { get; set; }
-
-        [JsonProperty("reference", NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public virtual object Reference { get; set; }
-
-        [JsonProperty("clubId", NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public virtual int ClubId { get; set; }
-
-        [JsonProperty("siteId", NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public virtual int SiteId { get; set; }
-
-        [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
-        public virtual string Name { get; set; }
-
-        #region ignore
-
         [JsonProperty("category"), JsonIgnore]
         public override string Category { get; set; }
+
+        [JsonProperty("source"), JsonIgnore]
+        public override Microsoft.Azure.ServiceBus.Message Source { get; set; }
 
         #endregion
 
@@ -65,15 +59,24 @@ namespace laget.Auditing.Models
         protected Event(string name, object entity)
         {
             Name = name;
-            For = entity;
-            Type = Action;
+            Entity = entity;
         }
 
         public Event With(Expression<Func<IEvent, object>> expression, object value)
         {
-            if (expression.Body is MemberExpression memberSelectorExpression)
+            if (expression.Body is MemberExpression memberExpression)
             {
-                var property = memberSelectorExpression.Member as PropertyInfo;
+                var property = memberExpression.Member as PropertyInfo;
+                if (property != null)
+                {
+                    property.SetValue(this, value, null);
+                }
+            }
+
+            if (expression.Body is UnaryExpression unaryExpression)
+            {
+                var property = (unaryExpression.Operand as MemberExpression)?.Member as PropertyInfo;
+
                 if (property != null)
                 {
                     property.SetValue(this, value, null);

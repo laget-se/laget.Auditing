@@ -23,7 +23,7 @@ namespace laget.Auditing.Tests
             Assert.NotEmpty(message.Id);
             Assert.Equal("Added", message.Action);
             Assert.Equal(name, message.Name);
-            Assert.Equal(account, message.For);
+            Assert.Equal(account, message.Entity);
             Assert.Equal(by, message.By);
             Assert.Equal(site, message.Reference);
         }
@@ -42,7 +42,7 @@ namespace laget.Auditing.Tests
             Assert.NotEmpty(message.Id);
             Assert.Equal("Created", message.Action);
             Assert.Equal(name, message.Name);
-            Assert.Equal(account, message.For);
+            Assert.Equal(account, message.Entity);
             Assert.Equal(by, message.By);
         }
 
@@ -62,7 +62,7 @@ namespace laget.Auditing.Tests
             Assert.NotEmpty(message.Id);
             Assert.Equal("Deleted", message.Action);
             Assert.Equal(name, message.Name);
-            Assert.Equal(account, message.For);
+            Assert.Equal(account, message.Entity);
             Assert.Equal(by, message.By);
             Assert.Equal(site, message.Reference);
         }
@@ -82,7 +82,7 @@ namespace laget.Auditing.Tests
             Assert.NotEmpty(message.Id);
             Assert.Equal("Information", message.Action);
             Assert.Equal(name, message.Name);
-            Assert.Equal(account, message.For);
+            Assert.Equal(account, message.Entity);
             Assert.Equal(by, message.By);
             Assert.Equal(description, message.Description);
         }
@@ -103,7 +103,7 @@ namespace laget.Auditing.Tests
             Assert.NotEmpty(message.Id);
             Assert.Equal("Removed", message.Action);
             Assert.Equal(name, message.Name);
-            Assert.Equal(account, message.For);
+            Assert.Equal(account, message.Entity);
             Assert.Equal(by, message.By);
             Assert.Equal(site, message.Reference);
         }
@@ -124,7 +124,7 @@ namespace laget.Auditing.Tests
             Assert.NotEmpty(message.Id);
             Assert.Equal("Updated", message.Action);
             Assert.Equal(name, message.Name);
-            Assert.Equal(account, message.For);
+            Assert.Equal(account, message.Entity);
             Assert.Equal(by, message.By);
             Assert.Equal(site, message.Reference);
         }

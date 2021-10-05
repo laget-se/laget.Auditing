@@ -1,14 +1,26 @@
-﻿using Microsoft.Azure.WebJobs;
+﻿using System;
+using laget.Auditing.Sinks;
+using laget.Auditing.Sinks.MongoDB.Models;
+using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 
 namespace laget.Auditing.Persistor.Functions
 {
-    public static class MongoDB
+    public class MongoDB
     {
-        [FunctionName("MongoDB")]
-        public static void Run([ServiceBusTrigger("auditing", "sink-mongodb", Connection = "AzureServiceBusConnectionString")]string mySbMsg, ILogger log)
+        private readonly IPersistor _persistor;
+
+        public MongoDB()
         {
-            log.LogInformation($"C# ServiceBus topic trigger function processed message: {mySbMsg}");
+            _persistor = new Sinks.MongoDB.Persistor(Environment.GetEnvironmentVariable("MongoConnectionString"));
+        }
+
+        [FunctionName("MongoDB")]
+        public void Run([ServiceBusTrigger("auditing", "sink-mongodb", Connection = "AzureServiceBusConnectionString")]Message message, ILogger log)
+        {
+            log.LogInformation($"C# ServiceBus topic trigger function processed message: {message.ToString()}");
+
+            _persistor.Persist(message.Name, message);
         }
     }
 }
