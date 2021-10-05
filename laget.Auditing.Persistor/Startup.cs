@@ -1,8 +1,9 @@
-﻿using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+﻿using laget.Auditing.Persistor;
+using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 
-[assembly: FunctionsStartup(typeof(laget.Auditing.Persistor.Functions.Startup))]
+[assembly: FunctionsStartup(typeof(Startup))]
 
-namespace laget.Auditing.Persistor.Functions
+namespace laget.Auditing.Persistor
 {
     public class Startup : FunctionsStartup
     {
