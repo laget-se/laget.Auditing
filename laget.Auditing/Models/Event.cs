@@ -12,7 +12,6 @@ namespace laget.Auditing.Models
     /// </summary>
     public interface IEvent
     {
-        string Category { get; set; }
         int ClubId { get; set; }
         int SiteId { get; set; }
         object Reference { get; set; }
