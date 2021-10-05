@@ -8,8 +8,8 @@ namespace laget.Auditing.Events
         [JsonProperty("action")]
         public override string Action { get; set; } = nameof(Inserted);
 
-        public Inserted(object entity)
-            : base(entity)
+        public Inserted(string name, object entity)
+            : base(name, entity)
         {
         }
     }

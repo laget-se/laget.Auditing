@@ -10,36 +10,38 @@ namespace laget.Auditing.Tests
         [Fact]
         public void ShouldMakeAddedEvent()
         {
+            var name = "ShouldMakeAddedEvent";
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
             var site = new Site();
 
-            var message = new Added(account)
+            var message = new Added(name, account)
                 .With(x => x.By, by)
-                .With(x => x.To, site);
+                .With(x => x.Reference, site);
 
             // Assert
             Assert.NotEmpty(message.Id);
             Assert.Equal("Added", message.Action);
-            Assert.Equal("Account", message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(account, message.For);
             Assert.Equal(by, message.By);
-            Assert.Equal(site, message.To);
+            Assert.Equal(site, message.Reference);
         }
 
         [Fact]
         public void ShouldMakeCreateEvent()
         {
+            var name = "ShouldMakeCreateEvent";
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
 
-            var message = new Created(account)
+            var message = new Created(name, account)
                 .With(x => x.By, by);
-            
+
             // Assert
             Assert.NotEmpty(message.Id);
             Assert.Equal("Created", message.Action);
-            Assert.Equal("Account", message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(account, message.For);
             Assert.Equal(by, message.By);
         }
@@ -47,37 +49,39 @@ namespace laget.Auditing.Tests
         [Fact]
         public void ShouldMakeDeleteEvent()
         {
+            var name = "ShouldMakeDeleteEvent";
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
             var site = new Site();
 
-            var message = new Deleted(account)
+            var message = new Deleted(name, account)
                 .With(x => x.By, by)
-                .With(x => x.From, site);
+                .With(x => x.Reference, site);
 
             // Assert
             Assert.NotEmpty(message.Id);
             Assert.Equal("Deleted", message.Action);
-            Assert.Equal("Account", message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(account, message.For);
             Assert.Equal(by, message.By);
-            Assert.Equal(site, message.From);
+            Assert.Equal(site, message.Reference);
         }
 
         [Fact]
         public void ShouldMakeInformationEvent()
         {
+            var name = "ShouldMakeInformationEvent";
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
 
             var description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vulputate rhoncus mattis. Cras malesuada consectetur mi, quis feugiat lorem pellentesque a.";
-            var message = new Information(account, description)
+            var message = new Information(name, account, description)
                 .With(x => x.By, by);
 
             // Assert
             Assert.NotEmpty(message.Id);
             Assert.Equal("Information", message.Action);
-            Assert.Equal("Account", message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(account, message.For);
             Assert.Equal(by, message.By);
             Assert.Equal(description, message.Description);
@@ -86,41 +90,43 @@ namespace laget.Auditing.Tests
         [Fact]
         public void ShouldMakeRemovedEvent()
         {
+            var name = "ShouldMakeRemovedEvent";
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
             var site = new Site();
 
-            var message = new Removed(account)
+            var message = new Removed(name, account)
                 .With(x => x.By, by)
-                .With(x => x.From, site);
+                .With(x => x.Reference, site);
 
             // Assert
             Assert.NotEmpty(message.Id);
             Assert.Equal("Removed", message.Action);
-            Assert.Equal("Account", message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(account, message.For);
             Assert.Equal(by, message.By);
-            Assert.Equal(site, message.From);
+            Assert.Equal(site, message.Reference);
         }
 
         [Fact]
         public void ShouldMakeRemovedUpdate()
         {
+            var name = "ShouldMakeRemovedUpdate";
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
             var site = new Site();
 
-            var message = new Updated(account)
+            var message = new Updated(name, account)
                 .With(x => x.By, by)
-                .With(x => x.From, site);
+                .With(x => x.Reference, site);
 
             // Assert
             Assert.NotEmpty(message.Id);
             Assert.Equal("Updated", message.Action);
-            Assert.Equal("Account", message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(account, message.For);
             Assert.Equal(by, message.By);
-            Assert.Equal(site, message.From);
+            Assert.Equal(site, message.Reference);
         }
     }
 }
