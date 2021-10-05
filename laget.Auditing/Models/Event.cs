@@ -68,7 +68,6 @@ namespace laget.Auditing.Models
             Name = name;
             For = entity;
             Type = Action;
-            Category = entity.GetType().Name;
         }
 
         public Event With(Expression<Func<IEvent, object>> expression, object value)

@@ -36,7 +36,7 @@ namespace laget.Auditing.Tests
 
             // Assert
             Assert.Equal(nameof(Added), message.Action);
-            Assert.Equal(nameof(Account), message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
 
             // Verify
@@ -61,7 +61,7 @@ namespace laget.Auditing.Tests
 
             // Assert
             Assert.Equal(nameof(Added), message.Action);
-            Assert.Equal(nameof(Account), message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
 
             // Verify
@@ -84,7 +84,7 @@ namespace laget.Auditing.Tests
 
             // Assert
             Assert.Equal(nameof(Created), message.Action);
-            Assert.Equal(nameof(Account), message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
 
             // Verify
@@ -107,7 +107,7 @@ namespace laget.Auditing.Tests
 
             // Assert
             Assert.Equal(nameof(Created), message.Action);
-            Assert.Equal(nameof(Account), message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
 
             // Verify
@@ -132,7 +132,7 @@ namespace laget.Auditing.Tests
 
             // Assert
             Assert.Equal(nameof(Deleted), message.Action);
-            Assert.Equal(nameof(Account), message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
             Assert.Equal(site, message.Reference);
 
@@ -158,7 +158,7 @@ namespace laget.Auditing.Tests
 
             // Assert
             Assert.Equal(nameof(Deleted), message.Action);
-            Assert.Equal(nameof(Account), message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
             Assert.Equal(site, message.Reference);
 
@@ -183,7 +183,7 @@ namespace laget.Auditing.Tests
 
             // Assert
             Assert.Equal(nameof(Information), message.Action);
-            Assert.Equal(nameof(Account), message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
             Assert.Equal(description, message.Description);
 
@@ -208,7 +208,7 @@ namespace laget.Auditing.Tests
 
             // Assert
             Assert.Equal(nameof(Information), message.Action);
-            Assert.Equal(nameof(Account), message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
             Assert.Equal(description, message.Description);
 
@@ -234,7 +234,7 @@ namespace laget.Auditing.Tests
 
             // Assert
             Assert.Equal(nameof(Removed), message.Action);
-            Assert.Equal(nameof(Account), message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
             Assert.Equal(site, message.Reference);
 
@@ -260,7 +260,7 @@ namespace laget.Auditing.Tests
 
             // Assert
             Assert.Equal(nameof(Removed), message.Action);
-            Assert.Equal(nameof(Account), message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
             Assert.Equal(site, message.Reference);
 
@@ -286,7 +286,7 @@ namespace laget.Auditing.Tests
 
             // Assert
             Assert.Equal(nameof(Updated), message.Action);
-            Assert.Equal(nameof(Account), message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
             Assert.Equal(site, message.Reference);
 
@@ -312,7 +312,7 @@ namespace laget.Auditing.Tests
 
             // Assert
             Assert.Equal(nameof(Updated), message.Action);
-            Assert.Equal(nameof(Account), message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
             Assert.Equal(site, message.Reference);
 
@@ -339,7 +339,7 @@ namespace laget.Auditing.Tests
             };
 
             var message = new Created(name, account)
-                .With(x => x.Category, "account")
+                .With(x => x.Name, name)
                 .With(x => x.By, by)
                 .With(x => x.Reference, site);
             var json = message.Serialize();
@@ -348,7 +348,7 @@ namespace laget.Auditing.Tests
 
             // Assert
             Assert.Equal(nameof(Created), message.Action);
-            Assert.Equal("account", message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
             Assert.Equal(site, message.Reference);
 
