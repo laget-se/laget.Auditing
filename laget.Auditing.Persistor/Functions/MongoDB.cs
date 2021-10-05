@@ -16,7 +16,7 @@ namespace laget.Auditing.Persistor.Functions
         }
 
         [FunctionName("MongoDB")]
-        public void Run([ServiceBusTrigger("auditing", "sink-mongodb", Connection = "AzureServiceBusConnectionString")]Message message, ILogger log)
+        public void Run([ServiceBusTrigger("auditing", "sink-mongodb", Connection = "AzureServiceBus")]Message message, ILogger log)
         {
             log.LogInformation($"C# ServiceBus topic trigger function processed message: {message.ToString()}");
 

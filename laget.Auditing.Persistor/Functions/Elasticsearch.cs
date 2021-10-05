@@ -1,5 +1,4 @@
-﻿//using laget.Auditing.Persistor.Models;
-//using laget.Auditing.Sinks;
+﻿//using laget.Auditing.Sinks;
 //using Microsoft.Azure.WebJobs;
 //using Microsoft.Extensions.Logging;
 
@@ -15,7 +14,7 @@
 //        }
 
 //        [FunctionName("Elasticsearch")]
-//        public void Run([ServiceBusTrigger("auditing", "sink-elasticsearch", Connection = "AzureServiceBusConnectionString")]Message message, ILogger log)
+//        public void Run([ServiceBusTrigger("auditing", "sink-elasticsearch", Connection = "AzureServiceBus")] Message message, ILogger log)
 //        {
 //            log.LogInformation($"C# ServiceBus topic trigger function processed message: {message}");
 //        }
