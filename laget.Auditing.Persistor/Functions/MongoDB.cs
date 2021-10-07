@@ -22,7 +22,11 @@ namespace laget.Auditing.Persistor.Functions
             try
             {
                 DogStatsd.Counter("sink.mongodb.message", 1);
-                _persistor.Persist(message.Name, message);
+
+                using (DogStatsd.StartTimer("sink.mongodb.message"))
+                {
+                    _persistor.Persist(message.Name, message);
+                }
 
                 log.LogInformation($@"Persisted { message.Name } { message }");
             }
@@ -33,4 +37,4 @@ namespace laget.Auditing.Persistor.Functions
             }         
         }
     }
-}
+}       
