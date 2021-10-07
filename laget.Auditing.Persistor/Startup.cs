@@ -20,6 +20,7 @@ namespace laget.Auditing.Persistor
                 Prefix = "auditing",
                 StatsdServerName = context.EnvironmentName == "Production" ? "stats.laget.se" : "stats.laget.dev"
             });
+
             var logger = new LoggerConfiguration()
             .MinimumLevel.Verbose()
             .WriteTo.Console(restrictedToMinimumLevel: Serilog.Events.LogEventLevel.Verbose)

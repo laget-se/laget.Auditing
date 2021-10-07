@@ -1,5 +1,4 @@
-﻿using System;
-using laget.Auditing.Sinks.MongoDB.Models;
+﻿using laget.Auditing.Sinks.MongoDB.Models;
 using MongoDB.Driver;
 
 namespace laget.Auditing.Sinks.MongoDB
@@ -7,7 +6,6 @@ namespace laget.Auditing.Sinks.MongoDB
     public class Persistor : IPersistor<Message>
     {
         private readonly IMongoDatabase _database;
-
         public Persistor(string connectionString)
         {
             var url = new MongoUrl(connectionString);
@@ -23,17 +21,9 @@ namespace laget.Auditing.Sinks.MongoDB
 
         public void Persist(string collectionName, Message message)
         {
-            try
-            {
-                var collection = _database.GetCollection<object>(collectionName.ToLower());
+            var collection = _database.GetCollection<object>(collectionName.ToLower());
 
-                collection.InsertOne(message);
-            }
-            catch (Exception ex)
-            {
-                //TODO: Log error?
-                //Log.Error(ex, ex.Message);
-            }
+            collection.InsertOne(message);
         }
     }
 }

@@ -21,7 +21,6 @@ namespace laget.Auditing.Sinks.Elasticsearch
             EnsureIndex(message);
         }
 
-
         private void EnsureIndex(Message message)
         {
             var name = GetIndexName(message);
