@@ -28,9 +28,9 @@ namespace laget.Auditing.Persistor.Functions
                     _persistor.Persist(message.Name, message);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                log.LogError($@"DogStatsd persist failed, { message.Name } { message } ");
+                log.LogError($@"DogStatsd persist failed, { ex } { ex.Message } ");
                 throw;
             }
 
