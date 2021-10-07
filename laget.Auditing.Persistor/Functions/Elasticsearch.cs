@@ -19,13 +19,21 @@ namespace laget.Auditing.Persistor.Functions
         [FunctionName("Elasticsearch")]
         public void Run([ServiceBusTrigger("auditing", "sink-elasticsearch", Connection = "AzureServiceBus")] Message message, ILogger log)
         {
-            log.LogInformation($"C# ServiceBus topic trigger function processed message: {message}");
-            DogStatsd.Counter("sink.elasticsearch.message", 1);
-
-            using (DogStatsd.StartTimer("sink.elasticsearch.message"))
+            try
             {
-                _persistor.Persist(message.Name, message);
+                DogStatsd.Counter("sink.elasticsearch.message", 1);
+
+                using (DogStatsd.StartTimer("sink.elasticsearch.message"))
+                {
+                    _persistor.Persist(message.Name, message);
+                }
             }
+            catch (Exception)
+            {
+                log.LogError($@"DogStatsd persist failed, { message.Name } { message } ");
+                throw;
+            }
+
         }
     }
 }
