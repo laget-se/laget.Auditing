@@ -14,7 +14,5 @@ namespace laget.Auditing.Tests.Models
         public string Email => $"{FirstName.ToLower()}.{LastName.ToLower()}@laget.se";
         [Auditable]
         public bool IsActive { get; set; } = true;
-
-        public string ShouldNotBeSerialized => "ShouldNotBeSerialized";
     }
 }

@@ -25,17 +25,20 @@ namespace laget.Auditing.Tests
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
             var site = new Site();
+            var name = nameof(Account);
 
-            var message = new Added(account)
+            var message = new Added(name, account)
+                .With(x => x.ClubId, 67347)
+                .With(x => x.SiteId, 134049)
                 .With(x => x.By, by)
-                .With(x => x.To, site);
+                .With(x => x.Reference, site);
             var json = message.Serialize();
 
             _auditor.Send(message);
 
             // Assert
             Assert.Equal(nameof(Added), message.Action);
-            Assert.Equal(nameof(Account), message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
 
             // Verify
@@ -49,17 +52,18 @@ namespace laget.Auditing.Tests
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
             var site = new Site();
+            var name = nameof(Account);
 
-            var message = new Added(account)
+            var message = new Added(name, account)
                 .With(x => x.By, by)
-                .With(x => x.To, site);
+                .With(x => x.Reference, site);
             var json = message.Serialize();
 
             await _auditor.SendAsync(message);
 
             // Assert
             Assert.Equal(nameof(Added), message.Action);
-            Assert.Equal(nameof(Account), message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
 
             // Verify
@@ -72,8 +76,9 @@ namespace laget.Auditing.Tests
         {
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
+            var name = nameof(Account);
 
-            var message = new Created(account)
+            var message = new Created(name, account)
                 .With(x => x.By, by);
             var json = message.Serialize();
 
@@ -81,7 +86,7 @@ namespace laget.Auditing.Tests
 
             // Assert
             Assert.Equal(nameof(Created), message.Action);
-            Assert.Equal(nameof(Account), message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
 
             // Verify
@@ -94,8 +99,9 @@ namespace laget.Auditing.Tests
         {
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
+            var name = nameof(Account);
 
-            var message = new Created(account)
+            var message = new Created(name, account)
                 .With(x => x.By, by);
             var json = message.Serialize();
 
@@ -103,7 +109,7 @@ namespace laget.Auditing.Tests
 
             // Assert
             Assert.Equal(nameof(Created), message.Action);
-            Assert.Equal(nameof(Account), message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
 
             // Verify
@@ -117,19 +123,20 @@ namespace laget.Auditing.Tests
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
             var site = new Site();
+            var name = nameof(Account);
 
-            var message = new Deleted(account)
+            var message = new Deleted(name, account)
                 .With(x => x.By, by)
-                .With(x => x.From, site);
+                .With(x => x.Reference, site);
             var json = message.Serialize();
 
             _auditor.Send(message);
 
             // Assert
             Assert.Equal(nameof(Deleted), message.Action);
-            Assert.Equal(nameof(Account), message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
-            Assert.Equal(site, message.From);
+            Assert.Equal(site, message.Reference);
 
             // Verify
             _topicSender.Verify(x => x.SendAsync(json), Times.Once);
@@ -142,19 +149,20 @@ namespace laget.Auditing.Tests
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
             var site = new Site();
+            var name = nameof(Account);
 
-            var message = new Deleted(account)
+            var message = new Deleted(name, account)
                 .With(x => x.By, by)
-                .With(x => x.From, site);
+                .With(x => x.Reference, site);
             var json = message.Serialize();
 
             await _auditor.SendAsync(message);
 
             // Assert
             Assert.Equal(nameof(Deleted), message.Action);
-            Assert.Equal(nameof(Account), message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
-            Assert.Equal(site, message.From);
+            Assert.Equal(site, message.Reference);
 
             // Verify
             _topicSender.Verify(x => x.SendAsync(json), Times.Once);
@@ -166,9 +174,10 @@ namespace laget.Auditing.Tests
         {
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
+            var name = nameof(Account);
 
             var description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vulputate rhoncus mattis. Cras malesuada consectetur mi, quis feugiat lorem pellentesque a.";
-            var message = new Information(account, description)
+            var message = new Information(name, account, description)
                 .With(x => x.By, by);
             var json = message.Serialize();
 
@@ -176,7 +185,7 @@ namespace laget.Auditing.Tests
 
             // Assert
             Assert.Equal(nameof(Information), message.Action);
-            Assert.Equal(nameof(Account), message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
             Assert.Equal(description, message.Description);
 
@@ -190,9 +199,10 @@ namespace laget.Auditing.Tests
         {
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
+            var name = nameof(Account);
 
             var description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vulputate rhoncus mattis. Cras malesuada consectetur mi, quis feugiat lorem pellentesque a.";
-            var message = new Information(account, description)
+            var message = new Information(name, account, description)
                 .With(x => x.By, by);
             var json = message.Serialize();
 
@@ -200,7 +210,7 @@ namespace laget.Auditing.Tests
 
             // Assert
             Assert.Equal(nameof(Information), message.Action);
-            Assert.Equal(nameof(Account), message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
             Assert.Equal(description, message.Description);
 
@@ -215,19 +225,20 @@ namespace laget.Auditing.Tests
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
             var site = new Site();
+            var name = nameof(Account);
 
-            var message = new Removed(account)
+            var message = new Removed(name, account)
                 .With(x => x.By, by)
-                .With(x => x.From, site);
+                .With(x => x.Reference, site);
             var json = message.Serialize();
 
             _auditor.Send(message);
 
             // Assert
             Assert.Equal(nameof(Removed), message.Action);
-            Assert.Equal(nameof(Account), message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
-            Assert.Equal(site, message.From);
+            Assert.Equal(site, message.Reference);
 
             // Verify
             _topicSender.Verify(x => x.SendAsync(json), Times.Once);
@@ -240,19 +251,20 @@ namespace laget.Auditing.Tests
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
             var site = new Site();
+            var name = nameof(Account);
 
-            var message = new Removed(account)
+            var message = new Removed(name, account)
                 .With(x => x.By, by)
-                .With(x => x.From, site);
+                .With(x => x.Reference, site);
             var json = message.Serialize();
 
             await _auditor.SendAsync(message);
 
             // Assert
             Assert.Equal(nameof(Removed), message.Action);
-            Assert.Equal(nameof(Account), message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
-            Assert.Equal(site, message.From);
+            Assert.Equal(site, message.Reference);
 
             // Verify
             _topicSender.Verify(x => x.SendAsync(json), Times.Once);
@@ -265,19 +277,20 @@ namespace laget.Auditing.Tests
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
             var site = new Site();
+            var name = nameof(Account);
 
-            var message = new Updated(account)
+            var message = new Updated(name, account)
                 .With(x => x.By, by)
-                .With(x => x.In, site);
+                .With(x => x.Reference, site);
             var json = message.Serialize();
 
             _auditor.Send(message);
 
             // Assert
             Assert.Equal(nameof(Updated), message.Action);
-            Assert.Equal(nameof(Account), message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
-            Assert.Equal(site, message.In);
+            Assert.Equal(site, message.Reference);
 
             // Verify
             _topicSender.Verify(x => x.SendAsync(json), Times.Once);
@@ -290,19 +303,20 @@ namespace laget.Auditing.Tests
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
             var site = new Site();
+            var name = nameof(Account);
 
-            var message = new Updated(account)
+            var message = new Updated(name, account)
                 .With(x => x.By, by)
-                .With(x => x.In, site);
+                .With(x => x.Reference, site);
             var json = message.Serialize();
 
             await _auditor.SendAsync(message);
 
             // Assert
             Assert.Equal(nameof(Updated), message.Action);
-            Assert.Equal(nameof(Account), message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
-            Assert.Equal(site, message.In);
+            Assert.Equal(site, message.Reference);
 
             // Verify
             _topicSender.Verify(x => x.SendAsync(json), Times.Once);
@@ -312,6 +326,7 @@ namespace laget.Auditing.Tests
         [Fact]
         public async Task ShouldSendEventWithCustomObjectAsync()
         {
+            var name = "Account";
             var account = new
             {
                 id = 123,
@@ -324,19 +339,19 @@ namespace laget.Auditing.Tests
                 name = "FC GonAce"
             };
 
-            var message = new Created(account)
-                .With(x => x.Category, "account")
+            var message = new Created(name, account)
+                .With(x => x.Name, name)
                 .With(x => x.By, by)
-                .With(x => x.On, site);
+                .With(x => x.Reference, site);
             var json = message.Serialize();
 
             await _auditor.SendAsync(message);
 
             // Assert
             Assert.Equal(nameof(Created), message.Action);
-            Assert.Equal("account",message.Category);
+            Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
-            Assert.Equal(site, message.On);
+            Assert.Equal(site, message.Reference);
 
             // Verify
             _topicSender.Verify(x => x.SendAsync(json), Times.Once);

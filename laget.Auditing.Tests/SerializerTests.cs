@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using System.IdentityModel.Tokens.Jwt;
 using System.Threading;
 using laget.Auditing.Events;
 using laget.Auditing.Models;
@@ -20,13 +19,13 @@ namespace laget.Auditing.Tests
         [Fact(Skip = "We need to provide a way to test the serializer with datetime (createdAt)!")]
         public void ShouldSerialize()
         {
+            var name = "Jane Doe";
             var account = new Account();
             var by = new By { Id = 2, Name = "John Doe" };
             var site = new Site();
 
-            var message = new Added(account)
-                .With(x => x.By, by)
-                .With(x => x.To, site);
+            var message = new Added(name, account)
+                .With(x => x.Reference, by);
 
             var expected = @"{
   ""by"": {

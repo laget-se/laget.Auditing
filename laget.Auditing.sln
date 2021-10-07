@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30717.126
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31717.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B4F61C31-DE03-4A09-90A2-345E3858164F}"
 	ProjectSection(SolutionItems) = preProject
@@ -13,13 +13,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "laget.Auditing", "laget.Auditing\laget.Auditing.csproj", "{2CF52126-8364-4612-9357-0B372D2296B6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "laget.Auditing.Service", "laget.Auditing.Service\laget.Auditing.Service.csproj", "{8945537F-90FE-4E55-AFC9-13120D034D47}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "laget.Auditing.Tests", "laget.Auditing.Tests\laget.Auditing.Tests.csproj", "{AC3CD208-CDB2-4FC5-BB7B-7E8C057003D7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{107CAD3E-6CED-402E-8306-92C914E41FBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "laget.Auditing.Core", "laget.Auditing.Core\laget.Auditing.Core.csproj", "{375A4A9D-E7C9-487A-AF4C-9DF5A1D98E1A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sinks", "Sinks", "{FC956D68-1273-4211-AA02-311CF5FD33F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "laget.Auditing.Sinks.Elasticsearch", "laget.Auditing.Sinks.Elasticsearch\laget.Auditing.Sinks.Elasticsearch.csproj", "{415C75CC-CC29-4CD8-8AB4-81E390DDFBCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "laget.Auditing.Sinks.MongoDB", "laget.Auditing.Sinks.MongoDB\laget.Auditing.Sinks.MongoDB.csproj", "{A2B60F88-6645-465A-9374-A5E93DFDFE6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "laget.Auditing.Persistor", "laget.Auditing.Persistor\laget.Auditing.Persistor.csproj", "{343F392D-AE1E-4AB9-A5D3-101A586037F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "laget.Auditing.Sinks", "laget.Auditing.Sinks\laget.Auditing.Sinks.csproj", "{5E1B2AA6-B534-4F5A-9E85-D3B6051DB846}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,24 +37,35 @@ Global
 		{2CF52126-8364-4612-9357-0B372D2296B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CF52126-8364-4612-9357-0B372D2296B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CF52126-8364-4612-9357-0B372D2296B6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8945537F-90FE-4E55-AFC9-13120D034D47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8945537F-90FE-4E55-AFC9-13120D034D47}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8945537F-90FE-4E55-AFC9-13120D034D47}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8945537F-90FE-4E55-AFC9-13120D034D47}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AC3CD208-CDB2-4FC5-BB7B-7E8C057003D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AC3CD208-CDB2-4FC5-BB7B-7E8C057003D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC3CD208-CDB2-4FC5-BB7B-7E8C057003D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC3CD208-CDB2-4FC5-BB7B-7E8C057003D7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{375A4A9D-E7C9-487A-AF4C-9DF5A1D98E1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{375A4A9D-E7C9-487A-AF4C-9DF5A1D98E1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{375A4A9D-E7C9-487A-AF4C-9DF5A1D98E1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{375A4A9D-E7C9-487A-AF4C-9DF5A1D98E1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{415C75CC-CC29-4CD8-8AB4-81E390DDFBCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{415C75CC-CC29-4CD8-8AB4-81E390DDFBCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{415C75CC-CC29-4CD8-8AB4-81E390DDFBCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{415C75CC-CC29-4CD8-8AB4-81E390DDFBCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2B60F88-6645-465A-9374-A5E93DFDFE6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2B60F88-6645-465A-9374-A5E93DFDFE6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2B60F88-6645-465A-9374-A5E93DFDFE6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2B60F88-6645-465A-9374-A5E93DFDFE6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{343F392D-AE1E-4AB9-A5D3-101A586037F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{343F392D-AE1E-4AB9-A5D3-101A586037F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{343F392D-AE1E-4AB9-A5D3-101A586037F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{343F392D-AE1E-4AB9-A5D3-101A586037F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E1B2AA6-B534-4F5A-9E85-D3B6051DB846}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E1B2AA6-B534-4F5A-9E85-D3B6051DB846}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E1B2AA6-B534-4F5A-9E85-D3B6051DB846}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E1B2AA6-B534-4F5A-9E85-D3B6051DB846}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{AC3CD208-CDB2-4FC5-BB7B-7E8C057003D7} = {107CAD3E-6CED-402E-8306-92C914E41FBD}
+		{415C75CC-CC29-4CD8-8AB4-81E390DDFBCA} = {FC956D68-1273-4211-AA02-311CF5FD33F9}
+		{A2B60F88-6645-465A-9374-A5E93DFDFE6E} = {FC956D68-1273-4211-AA02-311CF5FD33F9}
+		{5E1B2AA6-B534-4F5A-9E85-D3B6051DB846} = {FC956D68-1273-4211-AA02-311CF5FD33F9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9E849F98-69AD-4552-B9E8-97C3128FC28A}
