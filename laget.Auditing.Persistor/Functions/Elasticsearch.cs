@@ -21,19 +21,20 @@ namespace laget.Auditing.Persistor.Functions
         {
             try
             {
-                DogStatsd.Counter("sink.elasticsearch.message", 1);
+                DogStatsd.Counter("sink.elasticsearch.message.received", 1);
 
-                using (DogStatsd.StartTimer("sink.elasticsearch.message"))
+                using (DogStatsd.StartTimer("sink.elasticsearch.persistence"))
                 {
                     _persistor.Persist(message.Name, message);
                 }
+                DogStatsd.Counter("sink.elasticsearch.message.succeeded", 1);
             }
             catch (Exception ex)
             {
-                log.LogError($@"DogStatsd persist failed, { ex } { ex.Message } ");
+                DogStatsd.Counter("sink.elasticsearch.message.failed", 1);
+                log.LogError(ex, ex.Message);
                 throw;
             }
-
         }
     }
 }

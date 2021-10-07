@@ -21,17 +21,17 @@ namespace laget.Auditing.Persistor.Functions
         {
             try
             {
-                DogStatsd.Counter("sink.mongodb.message", 1);
+                DogStatsd.Counter("sink.mongodb.message.received", 1);
 
-                using (DogStatsd.StartTimer("sink.mongodb.message"))
+                using (DogStatsd.StartTimer("sink.mongodb.persistence"))
                 {
                     _persistor.Persist(message.Name, message);
                 }
-
-                log.LogInformation($@"Persisted { message.Name } { message }");
+                DogStatsd.Counter("sink.mongodb.message.succeeded", 1);
             }
             catch (Exception ex)
             {
+                DogStatsd.Counter("sink.mongodb.message.failed", 1);
                 log.LogError(ex, ex.Message);
                 throw;
             }         
