@@ -1,12 +1,52 @@
 ﻿using System;
+using laget.Auditing.Sinks.Elasticsearch.Attributes;
+using laget.Auditing.Sinks.Elasticsearch.Models;
+using Nest;
 
 namespace laget.Auditing.Sinks.Elasticsearch
 {
-    public  class Persistor : IPersistor
+    public  class Persistor : IPersistor<Message>
     {
-        public void Persist(string indexName, object @object)
+        private readonly IElasticClient _client;
+
+        public Persistor(string connectionString)
         {
-            throw new NotImplementedException();
+            var uri = new Uri(connectionString);
+            var settings = new ConnectionSettings(uri);
+            _client = new ElasticClient(settings);
+        }
+
+        public void Persist(string indexName, Message message)
+        {
+            EnsureIndex(message);
+        }
+
+
+        private void EnsureIndex(Message message)
+        {
+            var name = GetIndexName(message);
+            var index = _client.Indices.Exists(name);
+
+            if (!index.Exists)
+            {
+                _client.Indices.Create(name, f => f.Settings(x => x.NumberOfShards(1).NumberOfReplicas(0)));
+            }
+        }
+
+        private static string GetIndexName(Message message)
+        {
+            var attribute = (IndexAttribute)Attribute.GetCustomAttribute(typeof(Message), typeof(IndexAttribute));
+            var format = attribute.IndexFormat;
+            var name = attribute.IndexName.ToLower();
+
+            if (format != null)
+            {
+                name += $"-{DateTime.Now.ToString(format)}";
+            }
+
+            return name
+                .Replace("Document", "")
+                .Replace("document", "");
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿//using laget.Auditing.Sinks;
+﻿//using System;
+//using laget.Auditing.Sinks;
 //using laget.Auditing.Sinks.Elasticsearch.Models;
 //using Microsoft.Azure.WebJobs;
 //using Microsoft.Extensions.Logging;
@@ -8,11 +9,11 @@
 //{
 //    public class Elasticsearch
 //    {
-//        private readonly IPersistor _persistor;
+//        private readonly IPersistor<Message> _persistor;
 
 //        public Elasticsearch()
 //        {
-//            _persistor = new Sinks.Elasticsearch.Persistor();
+//            _persistor = new Sinks.Elasticsearch.Persistor(Environment.GetEnvironmentVariable("ElasticsearchUrl"));
 //        }
 
 //        [FunctionName("Elasticsearch")]

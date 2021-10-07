@@ -1,7 +1,9 @@
 ﻿using System;
+using laget.Auditing.Sinks.Elasticsearch.Attributes;
 
 namespace laget.Auditing.Sinks.Elasticsearch.Models
 {
+    [Index(nameof(Message))]
     public class Message
     {
         public Guid Id { get; set; } = Guid.NewGuid();
