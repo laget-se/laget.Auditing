@@ -3,6 +3,7 @@ using laget.Auditing.Sinks;
 using laget.Auditing.Sinks.MongoDB.Models;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
+using StatsdClient;
 
 namespace laget.Auditing.Persistor.Functions
 {
@@ -18,7 +19,9 @@ namespace laget.Auditing.Persistor.Functions
         [FunctionName("MongoDB")]
         public void Run([ServiceBusTrigger("auditing", "sink-mongodb", Connection = "AzureServiceBus")]Message message, ILogger log)
         {
-            log.LogInformation($"C# ServiceBus topic trigger function processed message: {message.ToString()}");
+            log.LogInformation($"C# ServiceBus topic trigger function processed message: {message}");
+            DogStatsd.Counter("sink.mongodb.message", 1);
+
 
             _persistor.Persist(message.Name, message);
         }

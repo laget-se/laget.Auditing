@@ -1,8 +1,6 @@
-﻿using System.IO;
-using laget.Auditing.Persistor;
+﻿using laget.Auditing.Persistor;
 using laget.Auditing.Persistor.Extensions;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
 using StatsdClient;
 
 [assembly: FunctionsStartup(typeof(Startup))]

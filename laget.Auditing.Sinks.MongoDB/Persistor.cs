@@ -1,7 +1,5 @@
 ﻿using System;
-using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
-using Newtonsoft.Json;
 
 namespace laget.Auditing.Sinks.MongoDB
 {

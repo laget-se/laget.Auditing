@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using System.IdentityModel.Tokens.Jwt;
 using System.Threading;
 using laget.Auditing.Events;
 using laget.Auditing.Models;
