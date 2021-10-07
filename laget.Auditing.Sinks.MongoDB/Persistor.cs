@@ -1,11 +1,10 @@
 ﻿using System;
-using MongoDB.Bson.Serialization;
+using laget.Auditing.Sinks.MongoDB.Models;
 using MongoDB.Driver;
-using Newtonsoft.Json;
 
 namespace laget.Auditing.Sinks.MongoDB
 {
-    public class Persistor : IPersistor
+    public class Persistor : IPersistor<Message>
     {
         private readonly IMongoDatabase _database;
 
@@ -22,13 +21,13 @@ namespace laget.Auditing.Sinks.MongoDB
             });
         }
 
-        public void Persist(string collectionName, object @object)
+        public void Persist(string collectionName, Message message)
         {
             try
             {
                 var collection = _database.GetCollection<object>(collectionName.ToLower());
 
-                collection.InsertOne(@object);
+                collection.InsertOne(message);
             }
             catch (Exception ex)
             {

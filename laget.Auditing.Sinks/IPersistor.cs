@@ -1,7 +1,7 @@
 ﻿namespace laget.Auditing.Sinks
 {
-    public interface IPersistor
+    public interface IPersistor<T>
     {
-        public void Persist(string name, object @object);
+        public void Persist(string name, T message);
     }
 }
