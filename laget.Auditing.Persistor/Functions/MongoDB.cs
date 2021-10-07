@@ -21,9 +21,11 @@ namespace laget.Auditing.Persistor.Functions
         {
             log.LogInformation($"C# ServiceBus topic trigger function processed message: {message}");
             DogStatsd.Counter("sink.mongodb.message", 1);
-
-
-            _persistor.Persist(message.Name, message);
+            
+            using (DogStatsd.StartTimer("sink.mongodb.message"))
+            {
+                _persistor.Persist(message.Name, message);
+            }
         }
     }
 }

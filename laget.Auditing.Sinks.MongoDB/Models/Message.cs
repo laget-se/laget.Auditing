@@ -41,7 +41,6 @@ namespace laget.Auditing.Sinks.MongoDB.Models
                 _entity = BsonSerializer.Deserialize<object>(JsonConvert.SerializeObject(Entity));
             }
         }
-
         private object _entity;
         [BsonElement("reference")]
         public object Reference

@@ -19,6 +19,7 @@ namespace laget.Auditing.Sinks.Elasticsearch
         public void Persist(string indexName, Message message)
         {
             EnsureIndex(message);
+            _client.Index(message, x => x.Index(GetIndexName(message)));
         }
 
 
@@ -29,24 +30,20 @@ namespace laget.Auditing.Sinks.Elasticsearch
 
             if (!index.Exists)
             {
-                _client.Indices.Create(name, f => f.Settings(x => x.NumberOfShards(1).NumberOfReplicas(0)));
+                _client.Indices.Create(name, f => f.Settings(x => x.NumberOfShards(1).NumberOfReplicas(0)).Map<Message>(m => m.AutoMap()));
             }
         }
 
         private static string GetIndexName(Message message)
         {
-            var attribute = (IndexAttribute)Attribute.GetCustomAttribute(typeof(Message), typeof(IndexAttribute));
+            var attribute = (IndexAttribute)Attribute.GetCustomAttribute(message.GetType(), typeof(IndexAttribute));
             var format = attribute.IndexFormat;
-            var name = attribute.IndexName.ToLower();
+            var name = $"auditing-{message.Name.ToLower()}";
 
             if (format != null)
-            {
                 name += $"-{DateTime.Now.ToString(format)}";
-            }
 
-            return name
-                .Replace("Document", "")
-                .Replace("document", "");
+            return name;
         }
     }
 }
