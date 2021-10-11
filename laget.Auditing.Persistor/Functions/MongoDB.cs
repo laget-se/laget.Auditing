@@ -28,7 +28,7 @@ namespace laget.Auditing.Persistor.Functions
                     _persistor.Persist(message.Name, message);
                 }
 
-                log.LogInformation($@"Persisted { message.Name } { message }");
+                log.LogInformation($@"MongoDb persisted { message.Name } { message }");
             }
             catch (Exception ex)
             {

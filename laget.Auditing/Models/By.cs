@@ -10,8 +10,8 @@ namespace laget.Auditing.Models
         public string Name { get; set; }
         [JsonProperty("ip")]
         public string Ip { get; set; }
-        [JsonProperty("sessionId")]
-        public int SessionId { get; set; }
+        [JsonProperty("referenceId")]
+        public string ReferenceId { get; set; }
         [JsonProperty("superadmin")]
         public bool Superadmin { get; set; } = false;
     }

@@ -27,6 +27,8 @@ namespace laget.Auditing.Persistor.Functions
                 {
                     _persistor.Persist(message.Name, message);
                 }
+
+                log.LogInformation($@"Elasticsearch persisted { message.Name } { message }");
             }
             catch (Exception ex)
             {
