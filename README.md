@@ -27,7 +27,6 @@ public class AccountService
             .With(x => x.By, by);
 
         _auditor.Send(message);
-
     }
 
     public Update(Account account, By by)
