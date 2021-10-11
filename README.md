@@ -5,7 +5,33 @@ A simple framework to audit entities in .NET and .NET Core...
 ![Nuget](https://img.shields.io/nuget/dt/laget.Auditing)
 
 ## Usage
+### By
+```c#
+public class By
+{
+    [JsonProperty("id")]
+    public int Id { get; set; }
+    [JsonProperty("name")]
+    public string Name { get; set; }
+    [JsonProperty("ip")]
+    public string Ip { get; set; }
+    [JsonProperty("referenceId")]
+    public string ReferenceId { get; set; }
+    [JsonProperty("superadmin")]
+    public bool Superadmin { get; set; } = false;
+}
+```
+
 ### Auditor
+#### .With(Expression<Func<IEvent, object>> expression, object value)
+| Property  | Type       | Description   |
+| --------- | ---------- | ------------- |
+| ClubId    | int        | ...           |
+| SiteId    | int        | ...           |
+| Reference | object     | ...           |
+| By        | By (class) | ...           |
+
+#### Examples
 ```c#
 public class AccountService
 {
@@ -52,7 +78,6 @@ public class AccountService
 }
 ```
 
-### Anonymous objects
 ```c#
 public class AccountService
 {
