@@ -15,7 +15,6 @@ namespace laget.Auditing.Models
         int ClubId { get; set; }
         int SiteId { get; set; }
         object Reference { get; set; }
-        string Name { get; set; }
         By By { get; set; }
     }
 
