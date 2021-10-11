@@ -98,7 +98,6 @@ public class AccountService
             id = 123,
             name = "Jane Doe"
         };
-        var by = new By { Id = 2, Name = "John Doe" };
         var site = new
         {
             id = 123,
