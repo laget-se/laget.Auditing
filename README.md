@@ -23,7 +23,7 @@ public class AccountService
     {
         account = _repository.Create(account, By by);
 
-        var message = new Created(account)
+        var message = new Created(nameof(Account), account)
             .With(x => x.By, by);
 
         _auditor.Send(message);
@@ -34,7 +34,7 @@ public class AccountService
     {
         _repository.Update(account);
 
-        var message = new Updated(account)
+        var message = new Updated((nameof(Account), account)
             .With(x => x.By, by);
 
         _auditor.Send(message);
@@ -44,26 +44,48 @@ public class AccountService
     {
         _repository.Delete(account);
 
-        var message = new Deleted(account)
+        var message = new Deleted((nameof(Account), account)
             .With(x => x.By, by)
-            .With(x => x.From, site);
-
-        _auditor.Send(message);
-    }
-
-    public RemoveFromSite(Account account, Site site, By by)
-    {
-        _repository.RemoveFromSite(account, site);
-
-        var message = new Removed(account)
-            .With(x => x.By, by)
-            .With(x => x.From, site);
+            .With(x => x.Reference, site);
 
         _auditor.Send(message);
     }
 }
 ```
 
-### Methods
+# Anonymous objects
 ```c#
+public class AccountService
+{
+    private readonly IAuditor _auditor;
+    private readonly IAccountRepository _repository;
+
+    public AccountService(IAccountRepository repository)
+    {
+        _auditor = new Auditor("ServiceBusConnectionString");
+        _repository = repository;
+    }
+
+
+    public Create(Account account, By by)
+    {
+        var account = new
+        {
+            id = 123,
+            name = "Jane Doe"
+        };
+        var by = new By { Id = 2, Name = "John Doe" };
+        var site = new
+        {
+            id = 123,
+            name = "FC GonAce"
+        };
+
+        var message = new Created("Account", account)
+            .With(x => x.By, by)
+            .With(x => x.Reference, site);
+
+        await _auditor.Send(message);
+    }
+}
 ```
