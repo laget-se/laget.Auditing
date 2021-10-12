@@ -27,7 +27,10 @@ namespace laget.Auditing.Persistor.Functions
                 {
                     _persistor.Persist(message.Name, message);
                 }
+
                 DogStatsd.Counter("sink.elasticsearch.message.succeeded", 1);
+
+                log.LogInformation($@"elasticsearch persisted { message.Name } { message }");
             }
             catch (Exception ex)
             {

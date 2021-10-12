@@ -27,7 +27,10 @@ namespace laget.Auditing.Persistor.Functions
                 {
                     _persistor.Persist(message.Name, message);
                 }
+
                 DogStatsd.Counter("sink.mongodb.message.succeeded", 1);
+
+                log.LogInformation($@"mongodb persisted { message.Name } { message }");
             }
             catch (Exception ex)
             {
