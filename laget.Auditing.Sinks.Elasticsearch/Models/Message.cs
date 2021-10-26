@@ -8,10 +8,10 @@ namespace laget.Auditing.Sinks.Elasticsearch.Models
     [Index]
     public class Message
     {
-        //[Text(Name = "id")]
-        //public Guid Id { get; set; } = Guid.NewGuid();
         [JsonProperty("id"), Text(Name = "sourceId")]
         public string SourceId { get; set; }
+        [Number(Name = "action")]
+        public string Action { get; set; }
         [Number(Name = "clubId")]
         public int ClubId { get; set; }
         [Number(Name = "siteID")]

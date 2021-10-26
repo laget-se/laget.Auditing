@@ -19,6 +19,7 @@ namespace laget.Auditing.Sinks.Elasticsearch
         public void Persist(string indexName, Message message)
         {
             EnsureIndex(message);
+
             _client.Index(message, x => x.Index(GetIndexName(message)));
         }
 

@@ -37,7 +37,7 @@ namespace laget.Auditing.Persistor.Functions
                 DogStatsd.Counter("sink.mongodb.message.failed", 1);
                 log.LogError(ex, ex.Message);
                 throw;
-            }         
+            }
         }
     }
-}       
+}

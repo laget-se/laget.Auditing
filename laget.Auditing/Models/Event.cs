@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Linq.Expressions;
+using System.Diagnostics;
 using System.Reflection;
+using System.Linq.Expressions;
 using Newtonsoft.Json;
 
 namespace laget.Auditing.Models
@@ -14,6 +15,7 @@ namespace laget.Auditing.Models
     {
         int ClubId { get; set; }
         int SiteId { get; set; }
+        string System { get; set; }
         object Reference { get; set; }
         By By { get; set; }
     }
@@ -22,6 +24,8 @@ namespace laget.Auditing.Models
     {
         [JsonProperty("id")]
         public override string Id { get; set; } = Guid.NewGuid().ToString();
+        [JsonProperty("action")]
+        public abstract string Action { get; set; }
         [JsonProperty("clubId", NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
         public int ClubId { get; set; }
         [JsonProperty("siteId", NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
@@ -30,6 +34,8 @@ namespace laget.Auditing.Models
         public string Name { get; set; }
         [JsonProperty("by")]
         public By By { get; set; }
+        [JsonProperty("system")]
+        public string System { get; set; }
 
         [JsonProperty("entity")]
         public object Entity { get; set; }
@@ -39,9 +45,6 @@ namespace laget.Auditing.Models
         public virtual object Reference { get; set; }
 
         #region Ignored Properties
-
-        [JsonProperty("action"), JsonIgnore]
-        public abstract string Action { get; set; }
 
         [JsonProperty("category"), JsonIgnore]
         public override string Category { get; set; }
@@ -57,8 +60,11 @@ namespace laget.Auditing.Models
 
         protected Event(string name, object entity)
         {
+            var assembly = GetCallingAssembly();
+
             Name = name;
             Entity = entity;
+            System = assembly.GetName().Name;
         }
 
         public Event With(Expression<Func<IEvent, object>> expression, object value)
@@ -83,6 +89,25 @@ namespace laget.Auditing.Models
             }
 
             return this;
+        }
+
+        private static Assembly GetCallingAssembly()
+        {
+            var me = Assembly.GetExecutingAssembly();
+            var st = new StackTrace(false);
+            var frames = st.GetFrames();
+
+            if (frames == null)
+                return null;
+
+            foreach (var frame in frames)
+            {
+                var m = frame.GetMethod();
+                if (m != null && m.DeclaringType != null && m.DeclaringType.Assembly != me)
+                    return m.DeclaringType.Assembly;
+            }
+
+            return null;
         }
     }
 }

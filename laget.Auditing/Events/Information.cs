@@ -9,7 +9,7 @@ namespace laget.Auditing.Events
         public override string Action { get; set; } = nameof(Information);
 
         public Information(string name, object entity, string description)
-            : base(name,entity)
+            : base(name, entity)
         {
             Description = description;
         }

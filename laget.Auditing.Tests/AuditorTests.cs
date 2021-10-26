@@ -40,6 +40,7 @@ namespace laget.Auditing.Tests
             Assert.Equal(nameof(Added), message.Action);
             Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
+            Assert.Equal("laget.Auditing.Tests", message.System);
 
             // Verify
             _topicSender.Verify(x => x.SendAsync(json), Times.Once);
@@ -65,6 +66,7 @@ namespace laget.Auditing.Tests
             Assert.Equal(nameof(Added), message.Action);
             Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
+            Assert.Equal("laget.Auditing.Tests", message.System);
 
             // Verify
             _topicSender.Verify(x => x.SendAsync(json), Times.Once);
@@ -88,6 +90,7 @@ namespace laget.Auditing.Tests
             Assert.Equal(nameof(Created), message.Action);
             Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
+            Assert.Equal("laget.Auditing.Tests", message.System);
 
             // Verify
             _topicSender.Verify(x => x.SendAsync(json), Times.Once);
@@ -111,6 +114,7 @@ namespace laget.Auditing.Tests
             Assert.Equal(nameof(Created), message.Action);
             Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
+            Assert.Equal("laget.Auditing.Tests", message.System);
 
             // Verify
             _topicSender.Verify(x => x.SendAsync(json), Times.Once);
@@ -137,6 +141,7 @@ namespace laget.Auditing.Tests
             Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
             Assert.Equal(site, message.Reference);
+            Assert.Equal("laget.Auditing.Tests", message.System);
 
             // Verify
             _topicSender.Verify(x => x.SendAsync(json), Times.Once);
@@ -163,6 +168,7 @@ namespace laget.Auditing.Tests
             Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
             Assert.Equal(site, message.Reference);
+            Assert.Equal("laget.Auditing.Tests", message.System);
 
             // Verify
             _topicSender.Verify(x => x.SendAsync(json), Times.Once);
@@ -188,6 +194,7 @@ namespace laget.Auditing.Tests
             Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
             Assert.Equal(description, message.Description);
+            Assert.Equal("laget.Auditing.Tests", message.System);
 
             // Verify
             _topicSender.Verify(x => x.SendAsync(json), Times.Once);
@@ -212,6 +219,7 @@ namespace laget.Auditing.Tests
             Assert.Equal(nameof(Information), message.Action);
             Assert.Equal(by, message.By);
             Assert.Equal(description, message.Description);
+            Assert.Equal("laget.Auditing.Tests", message.System);
 
             // Verify
             _topicSender.Verify(x => x.SendAsync(json), Times.Once);
@@ -238,6 +246,7 @@ namespace laget.Auditing.Tests
             Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
             Assert.Equal(site, message.Reference);
+            Assert.Equal("laget.Auditing.Tests", message.System);
 
             // Verify
             _topicSender.Verify(x => x.SendAsync(json), Times.Once);
@@ -263,6 +272,7 @@ namespace laget.Auditing.Tests
             Assert.Equal(nameof(Removed), message.Action);
             Assert.Equal(by, message.By);
             Assert.Equal(site, message.Reference);
+            Assert.Equal("laget.Auditing.Tests", message.System);
 
             // Verify
             _topicSender.Verify(x => x.SendAsync(json), Times.Once);
@@ -288,6 +298,7 @@ namespace laget.Auditing.Tests
             Assert.Equal(nameof(Updated), message.Action);
             Assert.Equal(by, message.By);
             Assert.Equal(site, message.Reference);
+            Assert.Equal("laget.Auditing.Tests", message.System);
 
             // Verify
             _topicSender.Verify(x => x.SendAsync(json), Times.Once);
@@ -314,6 +325,7 @@ namespace laget.Auditing.Tests
             Assert.Equal(name, message.Name);
             Assert.Equal(by, message.By);
             Assert.Equal(site, message.Reference);
+            Assert.Equal("laget.Auditing.Tests", message.System);
 
             // Verify
             _topicSender.Verify(x => x.SendAsync(json), Times.Once);
@@ -347,6 +359,7 @@ namespace laget.Auditing.Tests
             Assert.Equal(nameof(Created), message.Action);
             Assert.Equal(by, message.By);
             Assert.Equal(site, message.Reference);
+            Assert.Equal("laget.Auditing.Tests", message.System);
 
             // Verify
             _topicSender.Verify(x => x.SendAsync(json), Times.Once);

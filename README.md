@@ -28,6 +28,7 @@ public class By
 | --------- | ---------- | ------------- |
 | ClubId    | int        | ...           |
 | SiteId    | int        | ...           |
+| System    | string     | ...           |
 | Reference | object     | ...           |
 | By        | By (class) | ...           |
 
