@@ -3,17 +3,17 @@ using Newtonsoft.Json;
 
 namespace laget.Auditing.Events
 {
-    public class Deleted : Event
+    public class Enqueued : Event
     {
         [JsonProperty("action")]
-        public override string Action { get; set; } = nameof(Deleted);
+        public override string Action { get; set; } = nameof(Enqueued);
 
-        public Deleted(string name, object entity)
+        public Enqueued(string name, object entity)
             : base(name, entity)
         {
         }
 
-        public Deleted(string name, object entity, string description)
+        public Enqueued(string name, object entity, string description)
             : base(name, entity)
         {
             Description = description;

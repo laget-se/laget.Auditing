@@ -29,11 +29,15 @@ public class By
 | Added       | ...           |
 | Created     | ...           |
 | Deleted     | ...           |
+| Enqueued    | ...           |
 | Failed      | ...           |
 | Information | ...           |
 | Inserted    | ...           |
+| Migrated    | ...           |
+| Published   | ...           |
 | Removed     | ...           |
 | Succeded    | ...           |
+| Unpublished | ...           |
 | Updated     | ...           |
 
 #### .With(Expression<Func<IEvent, object>> expression, object value)

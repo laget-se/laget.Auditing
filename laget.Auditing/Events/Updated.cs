@@ -12,5 +12,11 @@ namespace laget.Auditing.Events
             : base(name, entity)
         {
         }
+
+        public Updated(string name, object entity, string description)
+            : base(name, entity)
+        {
+            Description = description;
+        }
     }
 }
