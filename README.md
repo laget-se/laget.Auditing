@@ -23,6 +23,19 @@ public class By
 ```
 
 ### Auditor
+#### Events (built-in)
+| Property    | Description   |
+| ----------- | ------------- |
+| Added       | ...           |
+| Created     | ...           |
+| Deleted     | ...           |
+| Failed      | ...           |
+| Information | ...           |
+| Inserted    | ...           |
+| Removed     | ...           |
+| Succeded    | ...           |
+| Updated     | ...           |
+
 #### .With(Expression<Func<IEvent, object>> expression, object value)
 | Property  | Type       | Description   |
 | --------- | ---------- | ------------- |

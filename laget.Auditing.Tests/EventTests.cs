@@ -68,6 +68,27 @@ namespace laget.Auditing.Tests
         }
 
         [Fact]
+        public void ShouldMakeFailedEvent()
+        {
+            var name = "ShouldMakeFailedEvent";
+            var account = new Account();
+            var by = new By { Id = 2, Name = "John Doe" };
+            var site = new Site();
+
+            var message = new Failed(name, account)
+                .With(x => x.By, by)
+                .With(x => x.Reference, site);
+
+            // Assert
+            Assert.NotEmpty(message.Id);
+            Assert.Equal("Failed", message.Action);
+            Assert.Equal(name, message.Name);
+            Assert.Equal(account, message.Entity);
+            Assert.Equal(by, message.By);
+            Assert.Equal(site, message.Reference);
+        }
+
+        [Fact]
         public void ShouldMakeInformationEvent()
         {
             var name = "ShouldMakeInformationEvent";
@@ -102,6 +123,27 @@ namespace laget.Auditing.Tests
             // Assert
             Assert.NotEmpty(message.Id);
             Assert.Equal("Removed", message.Action);
+            Assert.Equal(name, message.Name);
+            Assert.Equal(account, message.Entity);
+            Assert.Equal(by, message.By);
+            Assert.Equal(site, message.Reference);
+        }
+
+        [Fact]
+        public void ShouldMakeSuccededUpdate()
+        {
+            var name = "ShouldMakeSuccededUpdate";
+            var account = new Account();
+            var by = new By { Id = 2, Name = "John Doe" };
+            var site = new Site();
+
+            var message = new Succeded(name, account)
+                .With(x => x.By, by)
+                .With(x => x.Reference, site);
+
+            // Assert
+            Assert.NotEmpty(message.Id);
+            Assert.Equal("Succeded", message.Action);
             Assert.Equal(name, message.Name);
             Assert.Equal(account, message.Entity);
             Assert.Equal(by, message.By);
