@@ -27,8 +27,11 @@ public class By
 | Property    | Description   |
 | :---------- | :------------ |
 | Added       | ...           |
+| Archived    | ...           |
+| Attached    | ...           |
 | Created     | ...           |
 | Deleted     | ...           |
+| Detached    | ...           |
 | Enqueued    | ...           |
 | Failed      | ...           |
 | Information | ...           |
@@ -36,6 +39,7 @@ public class By
 | Migrated    | ...           |
 | Published   | ...           |
 | Removed     | ...           |
+| Sent        | ...           |
 | Succeded    | ...           |
 | Unpublished | ...           |
 | Updated     | ...           |
