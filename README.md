@@ -92,6 +92,16 @@ public class AccountService
         _repository.Delete(account);
 
         var message = new Deleted((nameof(Account), account)
+            .With(x => x.By, by);
+
+        _auditor.Send(message);
+    }
+
+    public Remove(Account account, Site site, By by)
+    {
+        _repository.Delete(account);
+
+        var message = new Remove((nameof(Account), account)
             .With(x => x.By, by)
             .With(x => x.Reference, site);
 
