@@ -10,7 +10,7 @@ namespace laget.Auditing.Sinks.Elasticsearch.Models
     {
         [JsonProperty("id"), Text(Name = "sourceId")]
         public string SourceId { get; set; }
-        [Number(Name = "action")]
+        [Text(Name = "action")]
         public string Action { get; set; }
         [Number(Name = "clubId")]
         public int ClubId { get; set; }

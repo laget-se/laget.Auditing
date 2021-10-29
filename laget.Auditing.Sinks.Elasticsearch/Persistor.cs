@@ -25,7 +25,12 @@ namespace laget.Auditing.Sinks.Elasticsearch
         {
             EnsureIndex(message);
 
-            _client.Index(message, x => x.Index(GetIndexName(message)));
+            var result = _client.Index(message, x => x.Index(GetIndexName(message)));
+
+            //TODO: Catch result and throw exception if not OK
+            //if (!result.IsValid)
+            //{
+            //}
         }
 
         private void EnsureIndex(Message message)
