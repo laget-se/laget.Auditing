@@ -25,7 +25,7 @@ public class By
 ### Auditor
 #### Events (built-in)
 | Property    | Description   |
-| ----------- | ------------- |
+| :---------- | :------------ |
 | Added       | ...           |
 | Created     | ...           |
 | Deleted     | ...           |
@@ -41,13 +41,13 @@ public class By
 | Updated     | ...           |
 
 #### .With(Expression<Func<IEvent, object>> expression, object value)
-| Property  | Type       | Description   |
-| --------- | ---------- | ------------- |
-| ClubId    | int        | ...           |
-| SiteId    | int        | ...           |
-| System    | string     | ...           |
-| Reference | object     | ...           |
-| By        | By (class) | ...           |
+| Property  | Type       | Default          | Description   |
+| :-------- | :--------- | :--------------- | :------------ |
+| ClubId    | int        | 0                | Should be set if the event was triggered from the context of a club |
+| SiteId    | int        | 0                | Should be set if the event was triggered from the context of a site |
+| System    | string     | Calling assembly | Indicates what system the event was triggered from, is |
+| Reference | object     | null             | Indicates what object the event refers to, e.g. if you add an attribute for a user the attribute object should be set as the reference |
+| By        | By (class) | null             | Indicates what user, if any, triggered the event |
 
 #### Examples
 ```c#

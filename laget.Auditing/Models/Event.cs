@@ -48,9 +48,10 @@ namespace laget.Auditing.Models
 
         [JsonProperty("category"), JsonIgnore]
         public override string Category { get; set; }
-
         [JsonProperty("source"), JsonIgnore]
         public override Microsoft.Azure.ServiceBus.Message Source { get; set; }
+        [JsonProperty("type"), JsonIgnore]
+        public override string Type { get; set; }
 
         #endregion
 

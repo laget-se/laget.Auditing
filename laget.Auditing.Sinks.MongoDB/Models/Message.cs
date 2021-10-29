@@ -31,7 +31,9 @@ namespace laget.Auditing.Sinks.MongoDB.Models
             }
         }
         private object _by;
-        [BsonElement("description")]
+        [BsonElement("system")]
+        public string System { get; set; }
+        [BsonElement("description"), BsonIgnoreIfNull, BsonIgnoreIfDefault]
         public string Description { get; set; }
         [BsonElement("entity")]
         public object Entity
@@ -44,7 +46,7 @@ namespace laget.Auditing.Sinks.MongoDB.Models
             }
         }
         private object _entity;
-        [BsonElement("reference")]
+        [BsonElement("reference"), BsonIgnoreIfNull, BsonIgnoreIfDefault]
         public object Reference
         {
             get => _reference;

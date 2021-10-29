@@ -14,7 +14,7 @@ namespace laget.Auditing.Sinks.Elasticsearch.Models
         public string Action { get; set; }
         [Number(Name = "clubId")]
         public int ClubId { get; set; }
-        [Number(Name = "siteID")]
+        [Number(Name = "siteId")]
         public int SiteId { get; set; }
         [Text(Name = "name")]
         public string Name { get; set; }
@@ -31,6 +31,8 @@ namespace laget.Auditing.Sinks.Elasticsearch.Models
         private object _by;
         [Text(Name = "description")]
         public string Description { get; set; }
+        [Text(Name = "system")]
+        public string System { get; set; }
         [Text(Name = "entity")]
         public object Entity
         {
