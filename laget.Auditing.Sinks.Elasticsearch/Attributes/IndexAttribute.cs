@@ -7,7 +7,7 @@ namespace laget.Auditing.Sinks.Elasticsearch.Attributes
     {
         public virtual string IndexFormat { get; }
 
-        public IndexAttribute(string indexFormat = "0:yyyy.MM.dd")
+        public IndexAttribute(string indexFormat = "yyyy.MM.dd")
         {
             IndexFormat = indexFormat;
         }
