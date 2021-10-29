@@ -13,7 +13,10 @@ namespace laget.Auditing.Persistor.Functions
 
         public Elasticsearch()
         {
-            _persistor = new Sinks.Elasticsearch.Persistor(Environment.GetEnvironmentVariable("ElasticsearchUrl"));
+            var apiKey = Environment.GetEnvironmentVariable("ElasticsearchApiKey");
+            var apiUrl = Environment.GetEnvironmentVariable("ElasticsearchApiUrl");
+
+            _persistor = new Sinks.Elasticsearch.Persistor(apiKey, apiUrl);
         }
 
         [FunctionName("Elasticsearch")]

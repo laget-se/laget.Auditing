@@ -1,4 +1,5 @@
 ﻿using System;
+using Elasticsearch.Net;
 using laget.Auditing.Sinks.Elasticsearch.Attributes;
 using laget.Auditing.Sinks.Elasticsearch.Models;
 using Nest;
@@ -9,10 +10,14 @@ namespace laget.Auditing.Sinks.Elasticsearch
     {
         private readonly IElasticClient _client;
 
-        public Persistor(string connectionString)
+        public Persistor(string apiKey, string apiUrl)
         {
-            var uri = new Uri(connectionString);
-            var settings = new ConnectionSettings(uri);
+            var uri = new Uri(apiUrl);
+            var nodes = new[] { uri };
+            var pool = new StaticConnectionPool(nodes);
+            var settings = new ConnectionSettings(pool)
+                .ApiKeyAuthentication(new ApiKeyAuthenticationCredentials(apiKey));
+
             _client = new ElasticClient(settings);
         }
 
