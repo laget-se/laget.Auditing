@@ -12,7 +12,7 @@ namespace laget.Auditing.Sinks.MongoDB.Models
         public ObjectId Id { get; set; } = new ObjectId();
         [JsonProperty("id"), BsonElement("sourceId")]
         public string SourceId { get; set; }
-        [JsonProperty("action")]
+        [BsonElement("action")]
         public string Action { get; set; }
         [BsonElement("clubId")]
         public int ClubId { get; set; }
