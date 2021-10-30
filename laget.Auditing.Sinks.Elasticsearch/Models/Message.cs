@@ -12,9 +12,9 @@ namespace laget.Auditing.Sinks.Elasticsearch.Models
         public string SourceId { get; set; }
         [Text(Name = "action")]
         public string Action { get; set; }
-        [Number(Name = "clubId")]
+        [Number(NumberType.Integer, Name = "clubId")]
         public int ClubId { get; set; }
-        [Number(Name = "siteId")]
+        [Number(NumberType.Integer, Name = "siteId")]
         public int SiteId { get; set; }
         [Text(Name = "name")]
         public string Name { get; set; }
