@@ -14,5 +14,11 @@ namespace laget.Auditing.Models
         public string ReferenceId { get; set; }
         [JsonProperty("superadmin")]
         public bool Superadmin { get; set; } = false;
+
+        public static By System => new By
+        {
+            Name = "SYSTEM",
+            Superadmin = true
+        };
     }
 }
