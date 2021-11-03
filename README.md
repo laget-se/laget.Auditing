@@ -26,10 +26,12 @@ public class By
 #### Events (built-in)
 | Property    | Description   |
 | :---------- | :------------ |
+| Activated   | ...           |
 | Added       | ...           |
 | Archived    | ...           |
 | Attached    | ...           |
 | Created     | ...           |
+| Deactivated | ...           |
 | Deleted     | ...           |
 | Detached    | ...           |
 | Enqueued    | ...           |
