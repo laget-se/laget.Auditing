@@ -30,6 +30,7 @@ public class By
 | Added       | ...           |
 | Archived    | ...           |
 | Attached    | ...           |
+| Cloned      | ...           |
 | Created     | ...           |
 | Deactivated | ...           |
 | Deleted     | ...           |
