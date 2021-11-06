@@ -42,6 +42,7 @@ public class By
 | Migrated    | ...           |
 | Published   | ...           |
 | Removed     | ...           |
+| Restored    | ...           |
 | Sent        | ...           |
 | Succeded    | ...           |
 | Unpublished | ...           |
