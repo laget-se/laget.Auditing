@@ -27,6 +27,7 @@ namespace laget.Auditing.Persistor.Functions
                 DogStatsd.Counter("sink.elasticsearch.message.received", 1);
                 DogStatsd.Counter($"sink.elasticsearch.action.{message.Action}", 1);
                 DogStatsd.Counter($"sink.elasticsearch.system.{message.System}", 1);
+                DogStatsd.Counter($"sink.elasticsearch.system.{message.Name}.{message.Action}", 1);
 
                 using (DogStatsd.StartTimer("sink.elasticsearch.persistence"))
                 {

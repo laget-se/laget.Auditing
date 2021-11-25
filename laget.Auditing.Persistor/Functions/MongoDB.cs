@@ -24,6 +24,7 @@ namespace laget.Auditing.Persistor.Functions
                 DogStatsd.Counter("sink.mongodb.message.received", 1);
                 DogStatsd.Counter($"sink.mongodb.action.{message.Action}", 1);
                 DogStatsd.Counter($"sink.mongodb.system.{message.System}", 1);
+                DogStatsd.Counter($"sink.mongodb.system.{message.Name}.{message.Action}", 1);
 
                 using (DogStatsd.StartTimer("sink.mongodb.persistence"))
                 {
