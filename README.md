@@ -37,6 +37,7 @@ public class By
 | Detached    | ...           |
 | Enqueued    | ...           |
 | Failed      | ...           |
+| Followed    | ...           |
 | Information | ...           |
 | Inserted    | ...           |
 | Migrated    | ...           |
@@ -45,6 +46,7 @@ public class By
 | Restored    | ...           |
 | Sent        | ...           |
 | Succeded    | ...           |
+| Unfollowed  | ...           |
 | Unpublished | ...           |
 | Updated     | ...           |
 
