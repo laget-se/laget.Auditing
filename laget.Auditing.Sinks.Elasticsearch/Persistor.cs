@@ -48,7 +48,7 @@ namespace laget.Auditing.Sinks.Elasticsearch
         {
             var attribute = (IndexAttribute)Attribute.GetCustomAttribute(message.GetType(), typeof(IndexAttribute));
             var format = attribute.IndexFormat;
-            var name = $"auditing-{message.Name.ToLower()}";
+            var name = "auditing";
 
             if (format != null)
                 name += $"-{DateTime.Now.ToString(format)}";
