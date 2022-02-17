@@ -51,7 +51,7 @@ namespace laget.Auditing.Sinks.Elasticsearch
             var name = "auditing";
 
             if (format != null)
-                name += $"-{DateTime.Now.ToString(format)}";
+                name += $"-{DateTime.Now.ToString(format)}-0";
 
             return name;
         }
