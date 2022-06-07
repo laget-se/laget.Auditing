@@ -24,31 +24,36 @@ public class By
 
 ### Auditor
 #### Events (built-in)
-| Property    | Description   |
-| :---------- | :------------ |
-| Activated   | ...           |
-| Added       | ...           |
-| Archived    | ...           |
-| Attached    | ...           |
-| Cloned      | ...           |
-| Created     | ...           |
-| Deactivated | ...           |
-| Deleted     | ...           |
-| Detached    | ...           |
-| Enqueued    | ...           |
-| Failed      | ...           |
-| Followed    | ...           |
-| Information | ...           |
-| Inserted    | ...           |
-| Migrated    | ...           |
-| Published   | ...           |
-| Removed     | ...           |
-| Restored    | ...           |
-| Sent        | ...           |
-| Succeded    | ...           |
-| Unfollowed  | ...           |
-| Unpublished | ...           |
-| Updated     | ...           |
+| Property      | Description   |
+| :------------ | :------------ |
+| Activated     | ...           |
+| Added         | ...           |
+| Archived      | ...           |
+| Associated    | ...           |
+| Attached      | ...           |
+| Cloned        | ...           |
+| Connected     | ...           |
+| Created       | ...           |
+| Deactivated   | ...           |
+| Deleted       | ...           |
+| Detached      | ...           |
+| Disassociated | ...           |
+| Disconnected  | ...           |
+| Enqueued      | ...           |
+| Failed        | ...           |
+| Followed      | ...           |
+| Information   | ...           |
+| Inserted      | ...           |
+| Migrated      | ...           |
+| Published     | ...           |
+| Removed       | ...           |
+| Reported      | ...           |
+| Restored      | ...           |
+| Sent          | ...           |
+| Succeded      | ...           |
+| Unfollowed    | ...           |
+| Unpublished   | ...           |
+| Updated       | ...           |
 
 #### .With(Expression<Func<IEvent, object>> expression, object value)
 | Property  | Type       | Default          | Description   |
