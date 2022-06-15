@@ -19,13 +19,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{107CAD3E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sinks", "Sinks", "{FC956D68-1273-4211-AA02-311CF5FD33F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "laget.Auditing.Sinks.Elasticsearch", "laget.Auditing.Sinks.Elasticsearch\laget.Auditing.Sinks.Elasticsearch.csproj", "{415C75CC-CC29-4CD8-8AB4-81E390DDFBCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "laget.Auditing.Sinks.Elasticsearch", "laget.Auditing.Sinks.Elasticsearch\laget.Auditing.Sinks.Elasticsearch.csproj", "{415C75CC-CC29-4CD8-8AB4-81E390DDFBCA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "laget.Auditing.Sinks.MongoDB", "laget.Auditing.Sinks.MongoDB\laget.Auditing.Sinks.MongoDB.csproj", "{A2B60F88-6645-465A-9374-A5E93DFDFE6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "laget.Auditing.Sinks.MongoDB", "laget.Auditing.Sinks.MongoDB\laget.Auditing.Sinks.MongoDB.csproj", "{A2B60F88-6645-465A-9374-A5E93DFDFE6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "laget.Auditing.Persistor", "laget.Auditing.Persistor\laget.Auditing.Persistor.csproj", "{343F392D-AE1E-4AB9-A5D3-101A586037F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "laget.Auditing.Persistor", "laget.Auditing.Persistor\laget.Auditing.Persistor.csproj", "{343F392D-AE1E-4AB9-A5D3-101A586037F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "laget.Auditing.Sinks", "laget.Auditing.Sinks\laget.Auditing.Sinks.csproj", "{5E1B2AA6-B534-4F5A-9E85-D3B6051DB846}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "laget.Auditing.Sinks", "laget.Auditing.Sinks\laget.Auditing.Sinks.csproj", "{5E1B2AA6-B534-4F5A-9E85-D3B6051DB846}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "laget.Auditing.Resubmitter", "laget.Auditing.Resubmitter\laget.Auditing.Resubmitter.csproj", "{3FEC2A05-2AF0-41B6-81B6-C88D26BB82FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{5E1B2AA6-B534-4F5A-9E85-D3B6051DB846}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E1B2AA6-B534-4F5A-9E85-D3B6051DB846}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E1B2AA6-B534-4F5A-9E85-D3B6051DB846}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FEC2A05-2AF0-41B6-81B6-C88D26BB82FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FEC2A05-2AF0-41B6-81B6-C88D26BB82FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FEC2A05-2AF0-41B6-81B6-C88D26BB82FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FEC2A05-2AF0-41B6-81B6-C88D26BB82FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
