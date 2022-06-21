@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
-using laget.Auditing.Sinks.MongoDB.Models;
+﻿using laget.Auditing.Sinks.MongoDB.Models;
 using MongoDB.Driver;
+using Serilog;
+using System;
+using System.Collections.Generic;
 
 namespace laget.Auditing.Sinks.MongoDB
 {
@@ -23,11 +25,18 @@ namespace laget.Auditing.Sinks.MongoDB
 
         public void Persist(string collectionName, Message message)
         {
-            var collection = _database.GetCollection<Message>(collectionName.ToLower());
+            try
+            {
+                var collection = _database.GetCollection<Message>(collectionName.ToLower());
 
-            EnsureIndexes(collection);
+                EnsureIndexes(collection);
 
-            collection.InsertOne(message);
+                collection.InsertOne(message);
+            }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex, ex.Message);
+            }
         }
 
         private static void EnsureIndexes(IMongoCollection<Message> collection)

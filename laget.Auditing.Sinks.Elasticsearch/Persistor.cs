@@ -1,12 +1,13 @@
-﻿using System;
-using Elasticsearch.Net;
+﻿using Elasticsearch.Net;
 using laget.Auditing.Sinks.Elasticsearch.Attributes;
 using laget.Auditing.Sinks.Elasticsearch.Models;
 using Nest;
+using Serilog;
+using System;
 
 namespace laget.Auditing.Sinks.Elasticsearch
 {
-    public  class Persistor : IPersistor<Message>
+    public class Persistor : IPersistor<Message>
     {
         private readonly IElasticClient _client;
 
@@ -23,14 +24,21 @@ namespace laget.Auditing.Sinks.Elasticsearch
 
         public void Persist(string indexName, Message message)
         {
-            EnsureIndex(message);
+            try
+            {
+                EnsureIndex(message);
 
-            var result = _client.Index(message, x => x.Index(GetIndexName(message)));
+                var result = _client.Index(message, x => x.Index(GetIndexName(message)));
 
-            //TODO: Catch result and throw exception if not OK
-            //if (!result.IsValid)
-            //{
-            //}
+                if (!result.IsValid)
+                {
+                    Log.Logger.Error($"{result.DebugInformation}", result.OriginalException);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex, ex.Message);
+            }
         }
 
         private void EnsureIndex(Message message)
