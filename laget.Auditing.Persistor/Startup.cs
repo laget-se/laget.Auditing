@@ -13,12 +13,10 @@ namespace laget.Auditing.Persistor
     {
         public override void Configure(IFunctionsHostBuilder builder)
         {
-            var context = builder.GetContext();
-
             builder.UseDogStatsd(new StatsdConfig
             {
                 Prefix = "auditing",
-                StatsdServerName = context.EnvironmentName == "Production" ? "stats.laget.se" : "stats.laget.dev"
+                StatsdServerName = "stats.laget.se"
             });
 
             var logger = new LoggerConfiguration()
