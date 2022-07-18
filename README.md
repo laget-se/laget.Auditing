@@ -31,6 +31,7 @@ public class By
 | Archived      | ...           |
 | Associated    | ...           |
 | Attached      | ...           |
+| Cleaned       | ...           |
 | Cloned        | ...           |
 | Connected     | ...           |
 | Created       | ...           |
@@ -46,6 +47,7 @@ public class By
 | Inserted      | ...           |
 | Migrated      | ...           |
 | Published     | ...           |
+| Purged        | ...           |
 | Removed       | ...           |
 | Reported      | ...           |
 | Restored      | ...           |
