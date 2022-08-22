@@ -1,11 +1,11 @@
-﻿using System;
-using laget.Auditing.Sinks.Elasticsearch.Attributes;
+﻿using laget.Auditing.Sinks.Elasticsearch.Attributes;
 using Nest;
 using Newtonsoft.Json;
+using System;
 
 namespace laget.Auditing.Sinks.Elasticsearch.Models
 {
-    [Index]
+    [Index("yyyy.MM")]
     public class Message
     {
         [JsonProperty("id"), Text(Name = "sourceId")]
