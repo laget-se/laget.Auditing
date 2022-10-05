@@ -24,40 +24,14 @@ public class By
 
 ### Auditor
 #### Events (built-in)
-| Property      | Description   |
-| :------------ | :------------ |
-| Activated     | ...           |
-| Added         | ...           |
-| Archived      | ...           |
-| Associated    | ...           |
-| Attached      | ...           |
-| Cleaned       | ...           |
-| Cloned        | ...           |
-| Connected     | ...           |
-| Created       | ...           |
-| Deactivated   | ...           |
-| Deleted       | ...           |
-| Descheduled   | ...           |
-| Detached      | ...           |
-| Disassociated | ...           |
-| Disconnected  | ...           |
-| Enqueued      | ...           |
-| Failed        | ...           |
-| Followed      | ...           |
-| Information   | ...           |
-| Inserted      | ...           |
-| Migrated      | ...           |
-| Published     | ...           |
-| Purged        | ...           |
-| Removed       | ...           |
-| Reported      | ...           |
-| Restored      | ...           |
-| Scheduled     | ...           |
-| Sent          | ...           |
-| Succeded      | ...           |
-| Unfollowed    | ...           |
-| Unpublished   | ...           |
-| Updated       | ...           |
+| | | | | | |
+| :- | :- | :- | :- | :- | :- |
+| Activated | Added | Archived | Archived | Associated | Attached |
+| Cleaned | Cloned | Connected | Created | Deactivated | Deleted |
+| Descheduled | Detached | Disassociated |Disconnected | Enqueued | Failed |
+| Followed | Information | Inserted | Migrated | Published | Purged |
+| Removed | Reported | Restored | Scheduled | Sent | Succeded |
+| Unfollowed | Unpublished | Updated |
 
 #### .With(Expression<Func<IEvent, object>> expression, object value)
 | Property  | Type       | Default          | Description   |
