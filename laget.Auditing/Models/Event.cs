@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Diagnostics;
-using System.Reflection;
 using System.Linq.Expressions;
-using Newtonsoft.Json;
+using System.Reflection;
 
 namespace laget.Auditing.Models
 {

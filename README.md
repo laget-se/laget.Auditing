@@ -37,6 +37,7 @@ public class By
 | Created       | ...           |
 | Deactivated   | ...           |
 | Deleted       | ...           |
+| Descheduled   | ...           |
 | Detached      | ...           |
 | Disassociated | ...           |
 | Disconnected  | ...           |
@@ -51,6 +52,7 @@ public class By
 | Removed       | ...           |
 | Reported      | ...           |
 | Restored      | ...           |
+| Scheduled     | ...           |
 | Sent          | ...           |
 | Succeded      | ...           |
 | Unfollowed    | ...           |
