@@ -46,8 +46,8 @@ namespace laget.Auditing.Sinks.MongoDB
             {
                 new CreateIndexModel<Message>(builder.Ascending(_ => _.Action), new CreateIndexOptions { Background = true }),
                 new CreateIndexModel<Message>(builder.Ascending(_ => _.ClubId), new CreateIndexOptions { Background = true }),
-                new CreateIndexModel<Message>(builder.Ascending(_ => _.CreatedAt), new CreateIndexOptions { Background = true }),
-                new CreateIndexModel<Message>(builder.Ascending(_ => _.SiteId), new CreateIndexOptions { Background = true })
+                new CreateIndexModel<Message>(builder.Ascending(_ => _.SiteId), new CreateIndexOptions { Background = true }),
+                new CreateIndexModel<Message>(builder.Ascending(_ => _.System), new CreateIndexOptions { Background = true })
             };
 
             collection.Indexes.CreateMany(indexes);
