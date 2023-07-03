@@ -15,6 +15,9 @@
     <readme>assets\README.md</readme>
     <repository type="git" url="https://github.com/laget-se/laget.Auditing" branch="master" />
     <dependencies>
+      <group targetFramework="net6.0">
+        <dependency id="laget.Azure.ServiceBus" version="1.1.35" />
+      </group>
       <group targetFramework="netstandard2.1">
         <dependency id="laget.Azure.ServiceBus" version="1.1.35" />
       </group>
