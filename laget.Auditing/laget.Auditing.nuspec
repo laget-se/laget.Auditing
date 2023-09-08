@@ -4,7 +4,7 @@
     <id>laget.Auditing</id>
     <title>laget.Auditing</title>
     <version>$version$</version>
-    <authors>gonace,laget.se</authors>
+    <authors>laget.se</authors>
     <owners>laget.se</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A simple framework to audit entities in .NET and .NET Core...</description>
