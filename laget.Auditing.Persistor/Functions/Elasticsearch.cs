@@ -1,9 +1,9 @@
-﻿using System;
-using laget.Auditing.Sinks;
+﻿using laget.Auditing.Sinks;
 using laget.Auditing.Sinks.Elasticsearch.Models;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using StatsdClient;
+using System;
 
 namespace laget.Auditing.Persistor.Functions
 {
@@ -36,7 +36,7 @@ namespace laget.Auditing.Persistor.Functions
 
                 DogStatsd.Counter("sink.elasticsearch.message.succeeded", 1);
 
-                log.LogInformation($@"elasticsearch persisted { message.Name } { message }");
+                log.LogInformation($@"elasticsearch persisted {message.Name} {message}");
             }
             catch (Exception ex)
             {

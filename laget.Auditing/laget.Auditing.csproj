@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="laget.Azure.ServiceBus" Version="1.1.40" />
+    <PackageReference Include="laget.Azure.ServiceBus" Version="2.1.42" />
   </ItemGroup>
 
 </Project>

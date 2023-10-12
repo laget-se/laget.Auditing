@@ -1,9 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using Azure.Messaging.ServiceBus;
 using laget.Azure.ServiceBus.Topic;
-using Microsoft.Azure.ServiceBus;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using System;
+using System.Threading.Tasks;
 
 namespace laget.Auditing
 {
@@ -28,7 +28,15 @@ namespace laget.Auditing
                 new TopicOptions
                 {
                     TopicName = topicName,
-                    RetryPolicy = new RetryExponential(minimumBackoff: TimeSpan.FromSeconds(5), maximumBackoff: TimeSpan.FromMinutes(5), maximumRetryCount: 100)
+                    ServiceBusClientOptions = new ServiceBusClientOptions
+                    {
+                        RetryOptions = new ServiceBusRetryOptions
+                        {
+                            Delay = TimeSpan.FromSeconds(5),
+                            MaxDelay = TimeSpan.FromMinutes(5),
+                            MaxRetries = 100
+                        }
+                    }
                 });
         }
 
