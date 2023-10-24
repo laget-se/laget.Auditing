@@ -1,0 +1,9 @@
+﻿{
+  "profiles": {
+    "laget.Auditing.Persistor": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 5552 --verbose",
+      "launchBrowser": false
+    }
+  }
+}

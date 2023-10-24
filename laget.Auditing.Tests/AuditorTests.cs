@@ -1,9 +1,10 @@
-﻿using System.Threading.Tasks;
-using laget.Auditing.Events;
+﻿using laget.Auditing.Events;
 using laget.Auditing.Models;
 using laget.Auditing.Tests.Models;
 using laget.Azure.ServiceBus.Topic;
 using Moq;
+using System.Threading;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace laget.Auditing.Tests
@@ -43,7 +44,7 @@ namespace laget.Auditing.Tests
             Assert.Equal("laget.Auditing.Tests", message.System);
 
             // Verify
-            _topicSender.Verify(x => x.SendAsync(json), Times.Once);
+            _topicSender.Verify(x => x.SendAsync(json, It.IsAny<CancellationToken>()), Times.Once);
             _topicSender.VerifyNoOtherCalls();
         }
 
@@ -69,7 +70,7 @@ namespace laget.Auditing.Tests
             Assert.Equal("laget.Auditing.Tests", message.System);
 
             // Verify
-            _topicSender.Verify(x => x.SendAsync(json), Times.Once);
+            _topicSender.Verify(x => x.SendAsync(json, It.IsAny<CancellationToken>()), Times.Once);
             _topicSender.VerifyNoOtherCalls();
         }
 
@@ -93,7 +94,7 @@ namespace laget.Auditing.Tests
             Assert.Equal("laget.Auditing.Tests", message.System);
 
             // Verify
-            _topicSender.Verify(x => x.SendAsync(json), Times.Once);
+            _topicSender.Verify(x => x.SendAsync(json, It.IsAny<CancellationToken>()), Times.Once);
             _topicSender.VerifyNoOtherCalls();
         }
 
@@ -117,7 +118,7 @@ namespace laget.Auditing.Tests
             Assert.Equal("laget.Auditing.Tests", message.System);
 
             // Verify
-            _topicSender.Verify(x => x.SendAsync(json), Times.Once);
+            _topicSender.Verify(x => x.SendAsync(json, It.IsAny<CancellationToken>()), Times.Once);
             _topicSender.VerifyNoOtherCalls();
         }
 
@@ -144,7 +145,7 @@ namespace laget.Auditing.Tests
             Assert.Equal("laget.Auditing.Tests", message.System);
 
             // Verify
-            _topicSender.Verify(x => x.SendAsync(json), Times.Once);
+            _topicSender.Verify(x => x.SendAsync(json, It.IsAny<CancellationToken>()), Times.Once);
             _topicSender.VerifyNoOtherCalls();
         }
 
@@ -171,7 +172,7 @@ namespace laget.Auditing.Tests
             Assert.Equal("laget.Auditing.Tests", message.System);
 
             // Verify
-            _topicSender.Verify(x => x.SendAsync(json), Times.Once);
+            _topicSender.Verify(x => x.SendAsync(json, It.IsAny<CancellationToken>()), Times.Once);
             _topicSender.VerifyNoOtherCalls();
         }
 
@@ -197,7 +198,7 @@ namespace laget.Auditing.Tests
             Assert.Equal("laget.Auditing.Tests", message.System);
 
             // Verify
-            _topicSender.Verify(x => x.SendAsync(json), Times.Once);
+            _topicSender.Verify(x => x.SendAsync(json, It.IsAny<CancellationToken>()), Times.Once);
             _topicSender.VerifyNoOtherCalls();
         }
 
@@ -222,7 +223,7 @@ namespace laget.Auditing.Tests
             Assert.Equal("laget.Auditing.Tests", message.System);
 
             // Verify
-            _topicSender.Verify(x => x.SendAsync(json), Times.Once);
+            _topicSender.Verify(x => x.SendAsync(json, It.IsAny<CancellationToken>()), Times.Once);
             _topicSender.VerifyNoOtherCalls();
         }
 
@@ -249,7 +250,7 @@ namespace laget.Auditing.Tests
             Assert.Equal("laget.Auditing.Tests", message.System);
 
             // Verify
-            _topicSender.Verify(x => x.SendAsync(json), Times.Once);
+            _topicSender.Verify(x => x.SendAsync(json, It.IsAny<CancellationToken>()), Times.Once);
             _topicSender.VerifyNoOtherCalls();
         }
 
@@ -275,7 +276,7 @@ namespace laget.Auditing.Tests
             Assert.Equal("laget.Auditing.Tests", message.System);
 
             // Verify
-            _topicSender.Verify(x => x.SendAsync(json), Times.Once);
+            _topicSender.Verify(x => x.SendAsync(json, It.IsAny<CancellationToken>()), Times.Once);
             _topicSender.VerifyNoOtherCalls();
         }
 
@@ -301,7 +302,7 @@ namespace laget.Auditing.Tests
             Assert.Equal("laget.Auditing.Tests", message.System);
 
             // Verify
-            _topicSender.Verify(x => x.SendAsync(json), Times.Once);
+            _topicSender.Verify(x => x.SendAsync(json, It.IsAny<CancellationToken>()), Times.Once);
             _topicSender.VerifyNoOtherCalls();
         }
 
@@ -328,7 +329,7 @@ namespace laget.Auditing.Tests
             Assert.Equal("laget.Auditing.Tests", message.System);
 
             // Verify
-            _topicSender.Verify(x => x.SendAsync(json), Times.Once);
+            _topicSender.Verify(x => x.SendAsync(json, It.IsAny<CancellationToken>()), Times.Once);
             _topicSender.VerifyNoOtherCalls();
         }
 
@@ -362,7 +363,7 @@ namespace laget.Auditing.Tests
             Assert.Equal("laget.Auditing.Tests", message.System);
 
             // Verify
-            _topicSender.Verify(x => x.SendAsync(json), Times.Once);
+            _topicSender.Verify(x => x.SendAsync(json, It.IsAny<CancellationToken>()), Times.Once);
             _topicSender.VerifyNoOtherCalls();
         }
     }

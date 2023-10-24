@@ -1,44 +1,50 @@
-﻿using System;
+﻿using Azure.Messaging.ServiceBus;
+using laget.Auditing.Persistor.Extensions;
 using laget.Auditing.Sinks;
 using laget.Auditing.Sinks.MongoDB.Models;
-using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 using StatsdClient;
+using System;
 
 namespace laget.Auditing.Persistor.Functions
 {
     public class MongoDB
     {
+        private readonly ILogger<MongoDB> _logger;
         private readonly IPersistor<Message> _persistor;
 
-        public MongoDB()
+        public MongoDB(ILogger<MongoDB> logger)
         {
+            _logger = logger;
             _persistor = new Sinks.MongoDB.Persistor(Environment.GetEnvironmentVariable("MongoConnectionString"));
         }
 
-        [FunctionName("MongoDB")]
-        public void Run([ServiceBusTrigger("auditing", "sink-mongodb", Connection = "AzureServiceBus")] Message message, ILogger log)
+        [Function(nameof(MongoDB))]
+        public void Run([ServiceBusTrigger("auditing", "sink-mongodb", Connection = "AzureServiceBus")] ServiceBusReceivedMessage message)
         {
             try
             {
                 DogStatsd.Counter("sink.mongodb.message.received", 1);
-                DogStatsd.Counter($"sink.mongodb.action.{message.Action}", 1);
-                DogStatsd.Counter($"sink.mongodb.system.{message.System}", 1);
-                DogStatsd.Counter($"sink.mongodb.system.{message.Name}.{message.Action}", 1);
+                var model = message.Deserialize<Message>();
+
+                DogStatsd.Counter($"sink.mongodb.action.{model.Action}", 1);
+                DogStatsd.Counter($"sink.mongodb.system.{model.System}", 1);
+                DogStatsd.Counter($"sink.mongodb.system.{model.Name}.{model.Action}", 1);
 
                 using (DogStatsd.StartTimer("sink.mongodb.persistence"))
                 {
-                    _persistor.Persist(message.Name, message);
+                    _persistor.Persist(model.Name, model);
                 }
 
                 DogStatsd.Counter("sink.mongodb.message.succeeded", 1);
 
-                log.LogInformation($@"mongodb persisted { message.Name } { message }");
+                _logger.LogInformation($@"mongodb persisted {model.Name} {model}");
             }
             catch (Exception ex)
             {
                 DogStatsd.Counter("sink.mongodb.message.failed", 1);
-                log.LogError(ex, ex.Message);
+                _logger.LogError(ex, ex.Message);
                 throw;
             }
         }

@@ -6,7 +6,7 @@ using System;
 namespace laget.Auditing.Sinks.Elasticsearch.Models
 {
     [Index("yyyy.MM")]
-    public class Message
+    public class Message : IMessage
     {
         [JsonProperty("id"), Text(Name = "sourceId")]
         public string SourceId { get; set; }

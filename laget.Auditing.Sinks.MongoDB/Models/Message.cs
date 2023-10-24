@@ -6,7 +6,7 @@ using System;
 
 namespace laget.Auditing.Sinks.MongoDB.Models
 {
-    public class Message
+    public class Message : IMessage
     {
         [BsonElement("id"), BsonId, BsonIgnoreIfDefault, BsonRepresentation(BsonType.ObjectId)]
         public ObjectId Id { get; set; } = new ObjectId();

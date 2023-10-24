@@ -1,27 +1,33 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <TargetFramework>net6</TargetFramework>
-    <AzureFunctionsVersion>v4</AzureFunctionsVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <AzureFunctionsVersion>v4</AzureFunctionsVersion>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="DogStatsD-CSharp-Client" Version="8.0.0" />
-    <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0" />
-    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="5.13.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
+    <PackageReference Include="DogStatsd.Extensions.Hosting" Version="8.0.20" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker" Version="1.19.0" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.ServiceBus" Version="5.14.1" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="1.15.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
-    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="4.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="Serilog" Version="[3.0.1]" />
-    <PackageReference Include="Serilog.Extensions.Logging" Version="[3.1.0]" />
+    <PackageReference Include="Serilog" Version="3.0.1" />
+    <PackageReference Include="Serilog.Extensions.Hosting" Version="7.0.0" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="7.0.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
     <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="9.0.3" />
     <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
   </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\laget.Auditing.Sinks.Elasticsearch\laget.Auditing.Sinks.Elasticsearch.csproj" />
     <ProjectReference Include="..\laget.Auditing.Sinks.MongoDB\laget.Auditing.Sinks.MongoDB.csproj" />
   </ItemGroup>
+
   <ItemGroup>
     <None Update="host.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -31,4 +37,5 @@
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </None>
   </ItemGroup>
+
 </Project>
