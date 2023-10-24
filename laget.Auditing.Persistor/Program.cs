@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Hosting;
-using Serilog;
 using StatsdClient;
 using StatsdClient.Extensions.Hosting;
 
@@ -21,7 +20,6 @@ namespace laget.Auditing.Persistor
             {
                 Prefix = "auditing",
                 StatsdServerName = "stats.laget.se"
-            })
-            .UseSerilog();
+            });
     }
 }

@@ -8,7 +8,7 @@
         "tryTimeout": "00:01:00",
         "delay": "00:00:00.80",
         "maxDelay": "00:01:00",
-        "maxRetries": 3
+        "maxRetries": 10
       },
       "prefetchCount": 0,
       "transportType": "amqpWebSockets",
