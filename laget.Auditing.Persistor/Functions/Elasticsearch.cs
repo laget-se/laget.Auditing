@@ -6,6 +6,7 @@ using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 using StatsdClient;
 using System;
+using System.Threading.Tasks;
 
 namespace laget.Auditing.Persistor.Functions
 {
@@ -21,7 +22,7 @@ namespace laget.Auditing.Persistor.Functions
         }
 
         [Function(nameof(Elasticsearch))]
-        public void Run([ServiceBusTrigger("auditing", "sink-elasticsearch", Connection = "AzureServiceBus")] ServiceBusReceivedMessage message, ServiceBusMessageActions actions)
+        public async Task Run([ServiceBusTrigger("auditing", "sink-elasticsearch", Connection = "AzureServiceBus")] ServiceBusReceivedMessage message, ServiceBusMessageActions actions)
         {
             try
             {
@@ -41,7 +42,7 @@ namespace laget.Auditing.Persistor.Functions
                 }
                 else
                 {
-                    actions.DeadLetterMessageAsync(message);
+                    await actions.DeadLetterMessageAsync(message);
                 }
 
                 DogStatsd.Counter("sink.elasticsearch.message.succeeded", 1);
@@ -50,7 +51,7 @@ namespace laget.Auditing.Persistor.Functions
             }
             catch (Exception ex)
             {
-                actions.DeadLetterMessageAsync(message);
+                await actions.DeadLetterMessageAsync(message);
 
                 DogStatsd.Counter("sink.elasticsearch.message.failed", 1);
                 _logger.LogError(ex, ex.Message);
