@@ -50,6 +50,8 @@ namespace laget.Auditing.Persistor.Functions
             }
             catch (Exception ex)
             {
+                actions.DeadLetterMessageAsync(message);
+
                 DogStatsd.Counter("sink.mongodb.message.failed", 1);
                 _logger.LogError(ex, ex.Message);
                 throw;
