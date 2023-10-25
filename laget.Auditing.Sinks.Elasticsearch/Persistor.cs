@@ -13,6 +13,12 @@ namespace laget.Auditing.Sinks.Elasticsearch
 
         public Persistor(string apiKey, string apiUrl)
         {
+            if (string.IsNullOrEmpty(apiKey) || string.IsNullOrEmpty(apiUrl))
+            {
+                Configured = false;
+                return;
+            }
+
             var uri = new Uri(apiUrl);
             var nodes = new[] { uri };
             var pool = new StaticConnectionPool(nodes);
@@ -21,6 +27,8 @@ namespace laget.Auditing.Sinks.Elasticsearch
 
             _client = new ElasticClient(settings);
         }
+
+        public bool Configured { get; } = true;
 
         public void Persist(string indexName, Message message)
         {

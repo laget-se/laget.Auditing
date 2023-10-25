@@ -1,4 +1,6 @@
-﻿using laget.Auditing.Sinks;
+﻿using Azure.Messaging.ServiceBus;
+using laget.Auditing.Persistor.Extensions;
+using laget.Auditing.Sinks;
 using laget.Auditing.Sinks.Elasticsearch.Models;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
@@ -19,23 +21,32 @@ namespace laget.Auditing.Persistor.Functions
         }
 
         [Function(nameof(Elasticsearch))]
-        public void Run([ServiceBusTrigger("auditing", "sink-elasticsearch", Connection = "AzureServiceBus")] Message message)
+        public void Run([ServiceBusTrigger("auditing", "sink-elasticsearch", Connection = "AzureServiceBus")] ServiceBusReceivedMessage message, ServiceBusMessageActions actions)
         {
             try
             {
-                DogStatsd.Counter("sink.elasticsearch.message.received", 1);
-                DogStatsd.Counter($"sink.elasticsearch.action.{message.Action}", 1);
-                DogStatsd.Counter($"sink.elasticsearch.system.{message.System}", 1);
-                DogStatsd.Counter($"sink.elasticsearch.system.{message.Name}.{message.Action}", 1);
+                var model = message.Deserialize<Message>();
 
-                using (DogStatsd.StartTimer("sink.elasticsearch.persistence"))
+                DogStatsd.Counter("sink.elasticsearch.message.received", 1);
+                DogStatsd.Counter($"sink.elasticsearch.action.{model.Action}", 1);
+                DogStatsd.Counter($"sink.elasticsearch.system.{model.System}", 1);
+                DogStatsd.Counter($"sink.elasticsearch.system.{model.Name}.{model.Action}", 1);
+
+                if (_persistor.Configured)
                 {
-                    _persistor.Persist(message.Name, message);
+                    using (DogStatsd.StartTimer("sink.elasticsearch.persistence"))
+                    {
+                        _persistor.Persist(model.Name, model);
+                    }
+                }
+                else
+                {
+                    actions.DeadLetterMessageAsync(message);
                 }
 
                 DogStatsd.Counter("sink.elasticsearch.message.succeeded", 1);
 
-                _logger.LogInformation($"elasticsearch persisted {message.Name} {message}");
+                _logger.LogInformation($"elasticsearch persisted {model.Name} {model}");
             }
             catch (Exception ex)
             {

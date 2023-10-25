@@ -21,20 +21,27 @@ namespace laget.Auditing.Persistor.Functions
         }
 
         [Function(nameof(MongoDB))]
-        public void Run([ServiceBusTrigger("auditing", "sink-mongodb", Connection = "AzureServiceBus")] ServiceBusReceivedMessage message)
+        public void Run([ServiceBusTrigger("auditing", "sink-mongodb", Connection = "AzureServiceBus")] ServiceBusReceivedMessage message, ServiceBusMessageActions actions)
         {
             try
             {
-                DogStatsd.Counter("sink.mongodb.message.received", 1);
                 var model = message.Deserialize<Message>();
 
+                DogStatsd.Counter("sink.mongodb.message.received", 1);
                 DogStatsd.Counter($"sink.mongodb.action.{model.Action}", 1);
                 DogStatsd.Counter($"sink.mongodb.system.{model.System}", 1);
                 DogStatsd.Counter($"sink.mongodb.system.{model.Name}.{model.Action}", 1);
 
-                using (DogStatsd.StartTimer("sink.mongodb.persistence"))
+                if (_persistor.Configured)
                 {
-                    _persistor.Persist(model.Name, model);
+                    using (DogStatsd.StartTimer("sink.mongodb.persistence"))
+                    {
+                        _persistor.Persist(model.Name, model);
+                    }
+                }
+                else
+                {
+                    actions.DeadLetterMessageAsync(message);
                 }
 
                 DogStatsd.Counter("sink.mongodb.message.succeeded", 1);

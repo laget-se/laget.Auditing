@@ -12,6 +12,12 @@ namespace laget.Auditing.Sinks.MongoDB
 
         public Persistor(string connectionString)
         {
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                Configured = false;
+                return;
+            }
+
             var url = new MongoUrl(connectionString);
             var client = new MongoClient(url);
 
@@ -22,6 +28,8 @@ namespace laget.Auditing.Sinks.MongoDB
                 WriteConcern = WriteConcern.Acknowledged
             });
         }
+
+        public bool Configured { get; } = true;
 
         public void Persist(string collectionName, Message message)
         {
