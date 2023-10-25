@@ -1,8 +1,8 @@
 ﻿using Elasticsearch.Net;
 using laget.Auditing.Sinks.Elasticsearch.Attributes;
 using laget.Auditing.Sinks.Elasticsearch.Models;
+using Microsoft.Extensions.Logging;
 using Nest;
-using Serilog;
 using System;
 
 namespace laget.Auditing.Sinks.Elasticsearch
@@ -10,8 +10,9 @@ namespace laget.Auditing.Sinks.Elasticsearch
     public class Persistor : IPersistor<Message>
     {
         private readonly IElasticClient _client;
+        private readonly ILogger _logger;
 
-        public Persistor(string apiKey, string apiUrl)
+        public Persistor(ILogger logger, string apiKey, string apiUrl)
         {
             if (string.IsNullOrEmpty(apiKey) || string.IsNullOrEmpty(apiUrl))
             {
@@ -26,6 +27,7 @@ namespace laget.Auditing.Sinks.Elasticsearch
                 .ApiKeyAuthentication(new ApiKeyAuthenticationCredentials(apiKey));
 
             _client = new ElasticClient(settings);
+            _logger = logger;
         }
 
         public bool Configured { get; } = true;
@@ -40,12 +42,12 @@ namespace laget.Auditing.Sinks.Elasticsearch
 
                 if (!result.IsValid)
                 {
-                    Log.Logger.Error($"{result.DebugInformation}", result.OriginalException);
+                    _logger.LogError($"{result.DebugInformation}", result.OriginalException);
                 }
             }
             catch (Exception ex)
             {
-                Log.Logger.Error(ex, ex.Message);
+                _logger.LogError(ex, ex.Message);
             }
         }
 

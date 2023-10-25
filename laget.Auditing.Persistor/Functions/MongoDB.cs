@@ -17,7 +17,7 @@ namespace laget.Auditing.Persistor.Functions
         public MongoDB(ILogger<MongoDB> logger)
         {
             _logger = logger;
-            _persistor = new Sinks.MongoDB.Persistor(Environment.GetEnvironmentVariable("MongoConnectionString"));
+            _persistor = new Sinks.MongoDB.Persistor(logger, Environment.GetEnvironmentVariable("MongoConnectionString"), Environment.GetEnvironmentVariable("MongoPrefix"));
         }
 
         [Function(nameof(MongoDB))]

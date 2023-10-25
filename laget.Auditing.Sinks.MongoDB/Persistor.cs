@@ -1,6 +1,6 @@
 ﻿using laget.Auditing.Sinks.MongoDB.Models;
+using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
-using Serilog;
 using System;
 using System.Collections.Generic;
 
@@ -9,8 +9,10 @@ namespace laget.Auditing.Sinks.MongoDB
     public class Persistor : IPersistor<Message>
     {
         private readonly IMongoDatabase _database;
+        private readonly ILogger _logger;
+        private readonly string _prefix;
 
-        public Persistor(string connectionString)
+        public Persistor(ILogger logger, string connectionString, string prefix = "")
         {
             if (string.IsNullOrEmpty(connectionString))
             {
@@ -27,6 +29,8 @@ namespace laget.Auditing.Sinks.MongoDB
                 ReadPreference = ReadPreference.SecondaryPreferred,
                 WriteConcern = WriteConcern.Acknowledged
             });
+            _logger = logger;
+            _prefix = prefix;
         }
 
         public bool Configured { get; } = true;
@@ -35,6 +39,9 @@ namespace laget.Auditing.Sinks.MongoDB
         {
             try
             {
+                if (!string.IsNullOrEmpty(_prefix))
+                    collectionName = $"{_prefix}.{collectionName}".ToLower();
+
                 var collection = _database.GetCollection<Message>(collectionName.ToLower());
 
                 EnsureIndexes(collection);
@@ -43,7 +50,7 @@ namespace laget.Auditing.Sinks.MongoDB
             }
             catch (Exception ex)
             {
-                Log.Logger.Error(ex, ex.Message);
+                _logger.LogError(ex, ex.Message);
             }
         }
 
