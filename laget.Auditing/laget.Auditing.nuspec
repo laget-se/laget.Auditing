@@ -16,16 +16,16 @@
     <repository type="git" url="https://github.com/laget-se/laget.Auditing" branch="master" />
     <dependencies>
       <group targetFramework="net8.0">
-        <dependency id="laget.Azure.ServiceBus" version="2.2.54" />
+        <dependency id="laget.Azure.ServiceBus" version="2.2.55" />
       </group>
       <group targetFramework="net6.0">
-        <dependency id="laget.Azure.ServiceBus" version="2.2.54" />
+        <dependency id="laget.Azure.ServiceBus" version="2.2.55" />
       </group>
       <group targetFramework="netstandard2.1">
-        <dependency id="laget.Azure.ServiceBus" version="2.2.54" />
+        <dependency id="laget.Azure.ServiceBus" version="2.2.55" />
       </group>
       <group targetFramework="netstandard2.0">
-        <dependency id="laget.Azure.ServiceBus" version="2.2.54" />
+        <dependency id="laget.Azure.ServiceBus" version="2.2.55" />
       </group>
     </dependencies>
   </metadata>
